@@ -1,0 +1,11 @@
+{
+  "plugins": {
+    "istanbub": {
+      "quiet": true,
+      "dir": "coverage",
+      "reporters": ["text-summary", "lcov"],
+      "include": ["**/*.js", "**/*.html"],
+      "exclude": ["**/test/**","**/node_modules/**"]
+    }
+  }
+}
