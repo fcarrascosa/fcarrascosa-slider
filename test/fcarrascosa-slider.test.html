@@ -66,13 +66,11 @@
 
             describe('moving forwards', () => {
                 it('should be on 1 when going from slide 0', () => {
-                  console.log(element.currentSlide, 'antes')
-                  element.goToNextSlide();
-                  console.log(element.currentSlide, 'despues')
+                    element.goToNextSlide();
                     expect(element.currentSlide).to.be.equal(1);
                 });
 
-                it('should have lastSlide property set to 0 when going from slide 1', () => {
+                it('should have latestSelectedSlide property set to 0 when going from slide 1', () => {
                     element.goToNextSlide();
                     expect(element.latestSelectedSlide).to.be.equal(0);
                 });
