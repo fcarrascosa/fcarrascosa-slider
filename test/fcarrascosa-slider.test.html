@@ -10,13 +10,19 @@
     <script src="../node_modules/wct-browser-legacy/browser.js"></script>
 
     <script src="../src/fcarrascosa-slider-register.js" type="module"></script>
+    <script src="../src/fcarrascosa-slider-slide-register.js" type="module"></script>
 
 </head>
 <body>
 
 <test-fixture id="BasicTestFixture">
     <template>
-        <fcarrascosa-slider></fcarrascosa-slider>
+        <fcarrascosa-slider>
+            <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+        </fcarrascosa-slider>
     </template>
 </test-fixture>
 
@@ -60,13 +66,15 @@
 
             describe('moving forwards', () => {
                 it('should be on 1 when going from slide 0', () => {
-                    element.goToNextSlide();
+                  console.log(element.currentSlide, 'antes')
+                  element.goToNextSlide();
+                  console.log(element.currentSlide, 'despues')
                     expect(element.currentSlide).to.be.equal(1);
                 });
 
                 it('should have lastSlide property set to 0 when going from slide 1', () => {
-                    element.goToPreviousSlide();
-                    expect(element.lastSlide).to.be.equal(0);
+                    element.goToNextSlide();
+                    expect(element.latestSelectedSlide).to.be.equal(0);
                 });
             })
         })

@@ -1,30 +1,59 @@
-import {LitElement, html} from "@polymer/lit-element";
+import { LitElement, html } from '@polymer/lit-element';
 
-export class FcarrascosaSlider extends LitElement {
-    static get is() {return 'fcarrascosa-slider'}
+/**
+ * @customElement
+ * @demo demo/index.html
+ */
+export default class FcarrascosaSlider extends LitElement {
+  static get is() { return 'fcarrascosa-slider'; }
 
-    static get properties() {
-        return {
-            currentSlide: {
-                type: Number
-            },
-            latestSlide: {
-                type: Number
-            }
-        }
-    }
+  static get properties() {
+    return {
+      currentSlide: {
+        type: Number,
+      },
+      latestSelectedSlide: {
+        type: Number,
+      },
+      totalAmountOfSlides: {
+        type: Number,
+      },
+    };
+  }
 
-    constructor() {
-        super();
-        this.currentSlide = 0;
-    }
+  constructor() {
+    super();
+    this.currentSlide = 0;
+    this.latestSelectedSlide = null;
+  }
 
-    render() {
-        return html`
+  connectedCallback() {
+    this.totalAmountOfSlides = this.querySelectorAll('fcarrascosa-slider-slide').length || 0;
+  }
+
+  goToNextSlide() {
+    const targetSlide = this.totalAmountOfSlides - 1 === this.currentSlide
+      ? 0
+      : this.currentSlide + 1;
+    this.goToSlide(targetSlide);
+  }
+
+  goToSlide(targetSlide) {
+    this.latestSelectedSlide = this.currentSlide;
+    this.selectSlide(targetSlide);
+  }
+
+  selectSlide(slideToSelect) {
+    this.querySelectorAll('fcarrascosa-slider-slide').forEach((slide, index) => {
+      slide.setAttribute('selected', index === slideToSelect);
+    });
+    this.currentSlide = slideToSelect;
+  }
+
+  render() {
+    return html`
             <slot></slot>
-            // <fcarrascosa-arrow-link @click="${this.nextSlide()}"></fcarrascosa-arrow-link>
-            // <fcarrascosa-arrow-link @click="${this.previousSlide()}"></fcarrascosa-arrow-link>
-        `
-    }
-
+            // <fcarrascosa-arrow-link @click="${this.goToNextSlide}"></fcarrascosa-arrow-link>
+        `;
+  }
 }
