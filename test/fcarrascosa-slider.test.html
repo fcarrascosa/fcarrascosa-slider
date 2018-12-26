@@ -26,9 +26,14 @@
     </template>
 </test-fixture>
 
-<script type="module">
+<test-fixture id="EmptyTestFixture">
+    <template>
+        <fcarrascosa-slider></fcarrascosa-slider>
+    </template>
+</test-fixture>
 
-    describe('wc-example', () => {
+<script type="module">
+    describe('element has slides', () => {
         let element;
 
         beforeEach(() => {
@@ -63,19 +68,73 @@
             it('should start on slide 0', () => {
                expect(element.currentSlide).to.be.equal(0);
             });
-
             describe('moving forwards', () => {
+              describe('normal path', () => {
                 it('should be on 1 when going from slide 0', () => {
-                    element.goToNextSlide();
-                    expect(element.currentSlide).to.be.equal(1);
+                  element.goToNextSlide();
+                  expect(element.currentSlide).to.be.equal(1);
                 });
-
+              });
+              describe('from last slide', () => {
+                it('should be on 0 when going from last slide', () => {
+                  element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
+                  element.goToNextSlide();
+                  expect(element.currentSlide).to.be.equal(0);
+                });
+              });
+              describe('common path', () => {
                 it('should have latestSelectedSlide property set to 0 when going from slide 1', () => {
-                    element.goToNextSlide();
-                    expect(element.latestSelectedSlide).to.be.equal(0);
+                  element.goToNextSlide();
+                  expect(element.latestSelectedSlide).to.be.equal(0);
                 });
-            })
+              });
+            });
+            describe('moving backwards', () => {
+              describe('normal path', () => {
+                it('should be on 0 when going from slide 1', () => {
+                  element.goToSlide(1);
+                  element.goToPreviousSlide();
+                  expect(element.currentSlide).to.be.equal(0);
+                });
+              });
+              describe('from first slide', () => {
+                it('should be on last slide when going from slide 0', () => {
+                  const latestSlideIndex = element.querySelectorAll('fcarrascosa-slider-slide').length - 1;
+                  element.goToPreviousSlide();
+                  expect(element.currentSlide).to.be.equal(latestSlideIndex);
+                })
+              });
+              describe('common path', () => {
+                it('should have latestSelectedSlide property set to 1 when going from slide 0', () => {
+                  element.goToSlide(1);
+                  element.goToPreviousSlide();
+                  expect(element.latestSelectedSlide).to.be.equal(1);
+                });
+              });
+            });
         })
+    });
+
+    describe('element does not have slides', () => {
+      let element;
+      let sandbox;
+
+      before(() => {
+        sandbox = sinon.sandbox.create();
+        sandbox.spy(console, 'warn');
+      });
+
+      after(() => {
+        sandbox.restore();
+      });
+
+      beforeEach(() => {
+        element = fixture('EmptyTestFixture');
+      });
+
+      it('should print a console warn', () => {
+        expect(console.warn).to.be.called.once;
+      })
     });
 </script>
 

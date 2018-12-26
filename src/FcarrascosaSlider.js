@@ -25,16 +25,24 @@ export default class FcarrascosaSlider extends LitElement {
     super();
     this.currentSlide = 0;
     this.latestSelectedSlide = null;
+    this.totalAmountOfSlides = this.querySelectorAll('fcarrascosa-slider-slide').length;
   }
 
   connectedCallback() {
-    this.totalAmountOfSlides = this.querySelectorAll('fcarrascosa-slider-slide').length || 0;
+    if (this.totalAmountOfSlides === 0) console.warn('slider does not have any slides');
   }
 
   goToNextSlide() {
     const targetSlide = this.totalAmountOfSlides - 1 === this.currentSlide
       ? 0
       : this.currentSlide + 1;
+    this.goToSlide(targetSlide);
+  }
+
+  goToPreviousSlide() {
+    const targetSlide = this.currentSlide === 0
+      ? this.totalAmountOfSlides - 1
+      : this.currentSlide - 1;
     this.goToSlide(targetSlide);
   }
 
