@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>wc-example test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+
+    <script src="../src/fcarrascosa-slider-slide-register.js" type="module"></script>
+
+</head>
+<body>
+
+<test-fixture id="BasicTestFixture">
+    <template>
+            <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+    </template>
+</test-fixture>
+
+
+<script type="module">
+  describe('element has slides', () => {
+    let element;
+
+    beforeEach(() => {
+      element = fixture('BasicTestFixture');
+    });
+
+    it('should be instantiated propperly', () => {
+      expect(element.constructor.is).to.be.equal('fcarrascosa-slider-slide');
+    });
+
+    describe('render method', () => {
+      let sandbox;
+
+      before(() => {
+        sandbox = sinon.sandbox.create();
+      });
+
+      afterEach(() => {
+        sandbox.restore();
+      });
+
+      it('should call render() method', (done) => {
+        sandbox.spy(element, 'render');
+        flush(() => {
+          expect(element.render).to.be.called.once;
+          done();
+        });
+      });
+    });
+
+  });
+
+</script>
+
+</body>
+</html>

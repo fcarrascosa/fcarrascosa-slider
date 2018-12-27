@@ -1,13 +1,13 @@
 {
   "name": "lit-element-slider",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A simple slider based in web components via lit-element",
   "main": "index.js",
   "scripts": {
     "start": "polymer analyze > analysis.json && polymer serve -o",
     "test": "wct --npm -l chrome",
-    "lint": "eslint --ext html --ext js | exit 0",
-    "lint-fix": "eslint --ext html --ext js --fix | exit 0"
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "keywords": [
     "lit-element",
@@ -18,7 +18,8 @@
   "author": "Fernando Carrascosa",
   "license": "ISC",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.5"
+    "@polymer/lit-element": "^0.6.5",
+    "lit-css": "^0.1.3"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.1",

@@ -1,3 +1,21 @@
-# fcarrascosa-slider: A WebComponent Slider based on lit-element.
+# fcarrascosa-slider 
+[![Uses lit-element 0.6.5](https://img.shields.io/badge/lit--element-%5E0.6.5-red.svg)](https://www.npmjs.com/package/@polymer/lit-element)
+[![Alpha Version](https://img.shields.io/badge/version-0.0.1a-blue.svg)](https://www.npmjs.com/package/@polymer/lit-element)
+![100% code coverage](https://img.shields.io/badge/coverage-100%25-green.svg)
+![12 tests passing, 0 tests failed](https://img.shields.io/badge/tests-12%E2%9C%94%20%7C%20%E2%9C%980-green.svg)
+### A WebComponent Slider based on lit-element.
 
-To be filled.
+This is the Fcarrascosa Slider a simple easy-to-use webcomponents set to make a Web Slider.
+
+## Usage
+
+After registering FcarrascosaSlider and FcarrascosaSliderSlide classes into your document, you just have to declare 
+them into your html code and you are ready to go.
+
+```html
+<fcarrascosa-slider>
+    <fcarrascosa-slider-slide caption="Something Here">
+        <img src="my-image.png" alt="my-alt" title="my-title">
+    </fcarrascosa-slider-slide>
+</fcarrascosa-slider>
+```
