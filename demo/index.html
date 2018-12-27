@@ -11,6 +11,7 @@
     <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
     <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
     <script type="module" src="../src/fcarrascosa-slider-register.js"></script>
+    <script type="module" src="../src/fcarrascosa-slider-slide-register.js"></script>
 
     <custom-style>
         <style is="custom-style" include="demo-pages-shared-styles">
@@ -22,7 +23,20 @@
     <h3>Basic polymer-element demo</h3>
     <demo-snippet>
         <template>
-            <fcarrascosa-slider></fcarrascosa-slider>
+            <fcarrascosa-slider>
+                <fcarrascosa-slider-slide>
+                    <img src="https://placehold.it/700x300?text=Image+1">
+                </fcarrascosa-slider-slide>
+                <fcarrascosa-slider-slide>
+                    <img src="https://placehold.it/700x300?text=Image+2">
+                </fcarrascosa-slider-slide>
+                <fcarrascosa-slider-slide>
+                    <img src="https://placehold.it/700x300?text=Image+3">
+                </fcarrascosa-slider-slide>
+                <fcarrascosa-slider-slide>
+                    <img src="https://placehold.it/700x300?text=Image+4">
+                </fcarrascosa-slider-slide>
+            </fcarrascosa-slider>
         </template>
     </demo-snippet>
 </div>
