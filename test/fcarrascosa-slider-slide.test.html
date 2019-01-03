@@ -16,13 +16,27 @@
 
 <test-fixture id="BasicTestFixture">
     <template>
-            <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide image="https://placehold.it/700x300" caption="example caption"></fcarrascosa-slider-slide>
+    </template>
+</test-fixture>
+
+<test-fixture id="EmptyTestFixture">
+    <template>
+        <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+    </template>
+</test-fixture>
+
+<test-fixture id="NoCaptionFixture">
+    <template>
+        <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
     </template>
 </test-fixture>
 
 
 <script type="module">
-  describe('element has slides', () => {
+  import FcarrascosaSliderSlide from '../src/FcarrascosaSliderSlide';
+
+  describe('common tests', () => {
     let element;
 
     beforeEach(() => {
@@ -54,6 +68,34 @@
     });
 
   });
+
+  describe('element does not have an image attribute', () => {
+    let element;
+
+    beforeEach(() => {
+      element = new FcarrascosaSliderSlide();
+    });
+
+    it('should print a console error', () => {
+        expect(() => {element.connectedCallback()}).to.throw(Error);
+    });
+
+    it('should return null when rendered', () => {
+      expect(element.render()).to.be.null;
+    });
+  });
+
+  describe('element does not have a caption', () => {
+    let element;
+
+    beforeEach(() => {
+      element = fixture('NoCaptionFixture');
+    });
+
+    it('should return an empty string when caption is null or undefined', () => {
+      expect(element.renderCaption()).to.be.equal('');
+    });
+  })
 
 </script>
 

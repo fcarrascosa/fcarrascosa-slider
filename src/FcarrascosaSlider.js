@@ -34,7 +34,7 @@ export default class FcarrascosaSlider extends LitElement {
        */
       time: {
         type: Number,
-        value: 2
+        value: 2,
       },
 
       interval: {
@@ -43,9 +43,8 @@ export default class FcarrascosaSlider extends LitElement {
     };
   }
 
-  constructor(time) {
+  constructor() {
     super();
-    this.time = time || 2;
     this.currentSlide = 0;
     this.latestSelectedSlide = null;
     this.totalAmountOfSlides = this.querySelectorAll('fcarrascosa-slider-slide').length;
@@ -55,6 +54,7 @@ export default class FcarrascosaSlider extends LitElement {
     if (this.totalAmountOfSlides === 0) {
       console.warn('slider does not have any slides');
     } else {
+      this.time = this.time || 2;
       this.goToSlide(0);
       this.initSlider();
     }
