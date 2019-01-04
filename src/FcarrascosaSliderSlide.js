@@ -12,7 +12,26 @@ export default class FcarrascosaSliderSlide extends LitElement {
       selected: {
         type: Boolean,
       },
+      caption: {
+        type: String,
+      },
+      image: {
+        type: String,
+      },
+      alt: {
+        type: String,
+      },
     };
+  }
+
+  connectedCallback() {
+    if (!this.image) throw new Error('Element should have an image');
+  }
+
+  renderCaption() {
+    return this.caption
+      ? html`<div><p>${this.caption}</p></div>`
+      : '';
   }
 
   shadowDomStyle() {
@@ -21,6 +40,7 @@ export default class FcarrascosaSliderSlide extends LitElement {
         display: block;
         height: 0;
         opacity: 0;
+        position: relative;
         transition: opacity 1.5s ease-in-out;
         width: 100%;
       }
@@ -30,19 +50,29 @@ export default class FcarrascosaSliderSlide extends LitElement {
         opacity: 1;
       }
       
-      ::slotted(img) {
+      img {
         display: block;
+        width: 100%;
+      }
+      p {
+        bottom: 20px;
+        left: 0%;
+        position: absolute;
+        text-align: center;
         width: 100%;
       }
     `;
   }
 
   render() {
-    return html`
-      <style>
-        ${this.shadowDomStyle()};
-      </style>
-      <slot></slot>
-    `;
+    return this.image
+      ? html`
+        <style>
+          ${this.shadowDomStyle()};
+        </style>
+        <img src="${this.image}" alt="${this.caption || this.alt}" title="${this.caption || this.alt}">
+        ${this.renderCaption()}      
+        `
+      : null;
   }
 }
