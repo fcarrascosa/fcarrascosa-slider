@@ -1,8 +1,9 @@
 # fcarrascosa-slider 
 [![Uses lit-element 0.6.5](https://img.shields.io/badge/lit--element-%5E0.6.5-red.svg)](https://www.npmjs.com/package/@polymer/lit-element)
 [![Alpha Version](https://img.shields.io/badge/version-0.2.0a-blue.svg)](https://www.npmjs.com/package/@polymer/lit-element)
-![100% code coverage](https://img.shields.io/badge/coverage-100%25-green.svg)
+[![codecov](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider/branch/master/graph/badge.svg)](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider)
 ![12 tests passing, 0 tests failed](https://img.shields.io/badge/tests-15%E2%9C%94%20%7C%20%E2%9C%980-green.svg)
+![Build status](https://travis-ci.org/fcarrascosa/fcarrascosa-slider.svg?branch=master)
 ### A WebComponent Slider based on lit-element.
 
 This is the Fcarrascosa Slider a simple easy-to-use webcomponents set to make a Web Slider.

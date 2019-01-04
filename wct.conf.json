@@ -1,5 +1,12 @@
 {
   "plugins": {
+    "local": {
+      "chrome": [
+        "headless",
+        "disable-gpu",
+        "no-sandbox"
+      ]
+    },
     "istanbub": {
       "quiet": true,
       "dir": "coverage",
