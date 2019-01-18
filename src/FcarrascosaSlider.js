@@ -1,4 +1,4 @@
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 import { css } from 'lit-css';
 
 /**
@@ -51,6 +51,7 @@ export default class FcarrascosaSlider extends LitElement {
   }
 
   connectedCallback() {
+    super.connectedCallback();
     if (this.totalAmountOfSlides === 0) {
       console.warn('slider does not have any slides');
     } else {
