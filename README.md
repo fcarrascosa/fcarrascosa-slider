@@ -1,6 +1,6 @@
 # fcarrascosa-slider 
 [![Uses lit-element ^2.0.0-rc.2](https://img.shields.io/badge/lit--element-%5E2.0.0--rc.2-red.svg)](https://www.npmjs.com/package/@polymer/lit-element)
-[![Alpha Version](https://img.shields.io/badge/version-0.2.0a-blue.svg)](https://www.npmjs.com/package/@polymer/lit-element)
+[![Alpha Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](https://www.npmjs.com/package/@polymer/lit-element)
 [![codecov](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider/branch/master/graph/badge.svg)](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider)
 ![12 tests passing, 0 tests failed](https://img.shields.io/badge/tests-15%E2%9C%94%20%7C%20%E2%9C%980-green.svg)
 ![Build status](https://travis-ci.org/fcarrascosa/fcarrascosa-slider.svg?branch=master)
