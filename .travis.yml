@@ -2,15 +2,23 @@ language: node_js
 sudo: required
 dist: trusty
 node_js:
-  - "node"
+- node
 addons:
   chrome: stable
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_script:
-  - npm install -g polymer-cli
-  - npm install -g codecov
+- npm install -g polymer-cli
+- npm install -g codecov
 script:
-  - xvfb-run npm run test && npm run build
-  - codecov
+- xvfb-run npm run test && npm run build
+- codecov
+deploy:
+  provider: npm
+  email: fcarrascosa@fcatrrascosa.es
+  api_key:
+    secure: oqkyvCmmC7i9SY1wjFqmczu56ojLloklMFxpSDUVqAdcw+Gyy3OgbYKWsP1tfcfEv8pMa42EZVGV3Mr6j5PnVheK0zwtRcLT5mTCK2WLygf7/GXMmaN/AgoqIBRqxXX0qEMokPhtcLYUKcZH2kciI4lSjkuw3ITNn3M/BabxIC6Gon+odwS568R9JCJ+ck4myHZEGuTXj3FPC1UQDxUHpNc98adFi2ZZGFxx7o4X4kfXAacfrvSxiJO0O8b/NlvUFqIo/KzSMYg0m6/xWwLjAtbHgn0dj31a7vaeqaDBDIRgceA0kZ5gWv/5oQS+pGTPsOsgAhpFb2iB1F+dkHOPKeKYgynE7yWi9iSjK37e9cL+O7ToQCXKG8mfbUJkXurhiFEMlVyOpffvZulrn2OsBbrfvRG/z21tXPW/rhA6J1OhW5CxLyb8DiAo0qkS6PcrSgE+v8p2FV7CMYGeaT5eSvHwLZ3g0rGqCqRMMAsHQqqLyIpeTtMm+93fm/aUOizbg3Re+EDp3Fjrx+w43EgQ/aW7DfY5VuocZnKB7PDMPWKlPrsa/tL3Ii8IHu9lnG6T3nIaYnZKwKrmy1ds9RnFhx3xT7lzVVzn9P8jXEZCcf9vtLy49ik69VFPPa4UNeHUXs1rqZPFP8l7NJ+bQ6ZRP+7kOpC/0Djloe72GJvfdTs=
+  on:
+    tags: true
+    repo: fcarrascosa/fcarrascosa-slider

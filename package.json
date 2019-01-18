@@ -1,5 +1,5 @@
 {
-  "name": "lit-element-slider",
+  "name": "fcarrascosa-slider",
   "version": "0.3.0",
   "description": "A simple slider based in web components via lit-element",
   "main": "index.js",
