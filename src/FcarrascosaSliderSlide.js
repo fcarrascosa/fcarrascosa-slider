@@ -1,4 +1,4 @@
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 import { css } from 'lit-css';
 
 /**
@@ -25,6 +25,7 @@ export default class FcarrascosaSliderSlide extends LitElement {
   }
 
   connectedCallback() {
+    super.connectedCallback();
     if (!this.image) throw new Error('Element should have an image');
   }
 
