@@ -20,9 +20,9 @@
     </template>
 </test-fixture>
 
-<test-fixture id="EmptyTestFixture">
+<test-fixture id="CaptionAlignmentFixture">
     <template>
-        <fcarrascosa-slider-slide></fcarrascosa-slider-slide>
+        <fcarrascosa-slider-slide image="https://placehold.it/700x300" caption="example caption" caption-alignment="right"></fcarrascosa-slider-slide>
     </template>
 </test-fixture>
 
@@ -45,6 +45,10 @@
 
     it('should be instantiated propperly', () => {
       expect(element.constructor.is).to.be.equal('fcarrascosa-slider-slide');
+    });
+
+    it('should have caption set as center', () => {
+      expect(element.captionAlignment).to.be.equal('center');
     });
 
     describe('render method', () => {
@@ -70,18 +74,8 @@
   });
 
   describe('element does not have an image attribute', () => {
-    let element;
-
-    beforeEach(() => {
-      element = new FcarrascosaSliderSlide();
-    });
-
-    it('should print a console error', () => {
-        expect(() => {element.connectedCallback()}).to.throw(Error);
-    });
-
-    it('should return null when rendered', () => {
-      expect(element.render()).to.be.null;
+    it('should throw an error', () => {
+        expect(() => new FcarrascosaSliderSlide()).to.throw(Error);
     });
   });
 
@@ -94,6 +88,18 @@
 
     it('should return an empty string when caption is null or undefined', () => {
       expect(element.renderCaption()).to.be.equal('');
+    });
+  });
+
+  describe('element has caption-alignment', ()=>{
+    let element;
+
+    beforeEach(() => {
+      element = fixture('CaptionAlignmentFixture');
+    });
+
+    it('should have captionAlignment set to right',() => {
+      expect(element.captionAlignment).to.be.equal('right')
     });
   })
 
