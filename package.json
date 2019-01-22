@@ -18,6 +18,10 @@
   ],
   "author": "Fernando Carrascosa",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fcarrascosa/fcarrascosa-slider"
+  },
   "dependencies": {
     "lit-css": "^0.1.3",
     "lit-element": "^2.0.0-rc.2"
