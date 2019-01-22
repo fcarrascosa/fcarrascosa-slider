@@ -34,7 +34,7 @@ export default class FcarrascosaSlider extends LitElement {
        */
       time: {
         type: Number,
-        value: 2,
+        value: 4,
       },
 
       interval: {
@@ -53,9 +53,10 @@ export default class FcarrascosaSlider extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     if (this.totalAmountOfSlides === 0) {
+      // eslint-disable-next-line no-console
       console.warn('slider does not have any slides');
     } else {
-      this.time = this.time || 2;
+      this.time = this.time || 4;
       this.goToSlide(0);
       this.initSlider();
     }
