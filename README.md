@@ -1,7 +1,7 @@
 # fcarrascosa-slider 
 [![Uses lit-element ^2.0.0-rc.2](https://img.shields.io/badge/lit--element-%5E2.0.0--rc.2-red.svg)](https://www.npmjs.com/package/lit-element)
 [![Current Version](https://img.shields.io/npm/v/fcarrascosa-slider.svg?colorB=blue)](https://www.npmjs.com/package/fcarrascosa-slider)
-[![codecov](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider/branch/master/graph/badge.svg)](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider)
+[![codecov](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider/branch/master/graph/badge.svg)](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider) [![Greenkeeper badge](https://badges.greenkeeper.io/fcarrascosa/fcarrascosa-slider.svg)](https://greenkeeper.io/)
 ![Build status](https://travis-ci.org/fcarrascosa/fcarrascosa-slider.svg?branch=master)
 ### A WebComponent Slider based on lit-element.
 
