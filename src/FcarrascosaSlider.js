@@ -66,6 +66,11 @@ export default class FcarrascosaSlider extends LitElement {
     this.interval = setInterval(this.goToNextSlide.bind(this), this.time * 1000);
   }
 
+  pauseSlider() {
+    clearInterval(this.interval);
+    this.interval = null;
+  }
+
   /**
    * Selects the next slide. If it's called from last slide, selects the first.
    */
