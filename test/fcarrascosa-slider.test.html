@@ -62,6 +62,11 @@
                     done();
                 });
             });
+
+            it('should set the interval property to null after pausing the slider', () => {
+              element.pauseSlider();
+              expect(element.interval).to.be.null;
+            });
         });
 
         describe('sliding behavior', () => {
