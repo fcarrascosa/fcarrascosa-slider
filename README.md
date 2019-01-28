@@ -6,13 +6,6 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/fcarrascosa/fcarrascosa-slider.svg)](https://greenkeeper.io/)
 ### A WebComponent Slider based on lit-element.
 
-<p class="codepen" data-height="512" data-theme-id="0" data-default-tab="result" data-user="fcarrascosa" data-slug-hash="PVzVwX" style="height: 512px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="&amp;amp;lt;fcarrascosa-slider&amp;amp;rt; example">
-  <span>See the Pen <a href="https://codepen.io/fcarrascosa/pen/PVzVwX/">
-  &amp;lt;fcarrascosa-slider&amp;rt; example</a> by Fernando Carrascosa (<a href="https://codepen.io/fcarrascosa">@fcarrascosa</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-
 This is the Fcarrascosa Slider a simple easy-to-use webcomponents set to make a Web Slider.
 
 ## Installation
@@ -29,7 +22,17 @@ This is the Fcarrascosa Slider a simple easy-to-use webcomponents set to make a 
 
 After registering FcarrascosaSlider and FcarrascosaSliderSlide classes into your document, you just have to declare 
 them into your html code and you are ready to go.
-
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <script type="module" src="https://demo.fcarrascosa.es/fcarrascosa-slider/js/index.js"></script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <fcarrascosa-slider>
     <fcarrascosa-slider-slide image="https://placehold.it/700x300?text=Image+1" caption="IMAGE 1 CAPTION">
