@@ -1,5 +1,4 @@
-import { LitElement, html } from 'lit-element';
-import { css } from 'lit-css';
+import { LitElement, html, css } from 'lit-element';
 
 /**
  * @customElement
@@ -111,7 +110,7 @@ export default class FcarrascosaSlider extends LitElement {
     this.currentSlide = slideToSelect;
   }
 
-  shadowDomStyle() {
+  static get styles() {
     return css`
       :host {
         box-sizing: content-box;
@@ -132,9 +131,6 @@ export default class FcarrascosaSlider extends LitElement {
 
   render() {
     return html`
-            <style>
-                ${this.shadowDomStyle()}
-            </style>
             <slot></slot>
         `;
   }

@@ -1,5 +1,4 @@
-import { LitElement, html } from 'lit-element';
-import { css } from 'lit-css';
+import { LitElement, html, css } from 'lit-element';
 
 /**
  * @customElement
@@ -41,7 +40,7 @@ export default class FcarrascosaSliderSlide extends LitElement {
       : '';
   }
 
-  shadowDomStyle() {
+  static get styles() {
     return css`
       :host {
         display: block;
@@ -93,9 +92,6 @@ export default class FcarrascosaSliderSlide extends LitElement {
 
   render() {
     return html`
-        <style>
-            ${this.shadowDomStyle()}
-        </style>
         <img src="${this.image}" alt="${this.caption || this.alt}" title="${this.caption || this.alt}">
         ${this.renderCaption()}      
         `;
