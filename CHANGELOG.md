@@ -1,3 +1,9 @@
+#0.5.0 to 0.6.0
+* Updated README.md
+* Updated lit-element to v2.0.0-rc.5
+* Implemented lit-element's style() method for shadowDomStyles
+* Removed dependency of lit-css
+
 #0.4.0 to 0.5.0
 * Add pause method to the slider
 
