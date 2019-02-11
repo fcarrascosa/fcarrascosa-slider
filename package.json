@@ -1,6 +1,6 @@
 {
   "name": "fcarrascosa-slider",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A simple slider based in web components via lit-element",
   "main": "index.js",
   "scripts": {
@@ -23,21 +23,21 @@
     "url": "https://github.com/fcarrascosa/fcarrascosa-slider"
   },
   "dependencies": {
-    "lit-element": "^2.0.0-rc.5"
+    "lit-element": "^2.0.1"
   },
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/iron-pages": "^3.0.1",
     "@polymer/test-fixture": "^4.0.2",
-    "@webcomponents/webcomponentsjs": "^2.2.1",
-    "eslint": "^5.10.0",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-html": "^5.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "polymer-cli": "^1.9.5",
+    "eslint-plugin-html": "^5.0.3",
+    "eslint-plugin-import": "^2.16.0",
+    "polymer-cli": "^1.9.6",
     "wct-browser-legacy": "^1.0.2",
-    "wct-istanbub": "^0.2.8",
+    "wct-istanbub": "^0.2.9",
     "web-component-tester": "^6.9.0"
   }
 }
