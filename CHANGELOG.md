@@ -1,3 +1,6 @@
+#0.6.0 to 0.6.1
+* Updated lit-element to 2.0.1
+
 #0.5.0 to 0.6.0
 * Updated README.md
 * Updated lit-element to v2.0.0-rc.5
