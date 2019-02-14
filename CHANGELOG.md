@@ -1,3 +1,6 @@
+#0.6.1 to 0.6.2
+* Updated tests to karma
+
 #0.6.0 to 0.6.1
 * Updated lit-element to 2.0.1
 

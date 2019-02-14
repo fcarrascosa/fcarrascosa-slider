@@ -12,7 +12,7 @@ before_script:
 - npm install -g polymer-cli
 - npm install -g codecov
 script:
-- xvfb-run npm run test && npm run build
+- xvfb-run npm run test && npm run test:es5 && npm run build
 - codecov
 deploy:
   provider: npm
