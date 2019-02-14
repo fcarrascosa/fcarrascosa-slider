@@ -5,10 +5,6 @@ node_js:
 - node
 addons:
   chrome: stable
-  browserstack:
-    username: "fernandocarrasco3"
-    access_key:
-      secure: "QPRrD847b7JUG0e7mXi9Va5Z1+4juHgyEDr8awCbU7X8pLIte44Xuda4hJpz/YMV9++nHL9Gi+RKiZqw05yVhdgqu530W4YsAjpYPL758OO7j6k73lR3hOTFft6Op+KuD6WSY5I1rBqeHAPbPk5fKTeWGl1XS8JieU1Ar1VoBAY5D8i9mM53KGYCJCaksLXwKDAg7bl1chT4aQfG8fNMJ/QhZM213QXtGwCxV1Cig5lqk1W54N5LpeDyEILWrpYgfptFtSdnHV+vrQxnQWi3HlwviYkMSfOEiBBib5Npyhybo1TB6JOLGkmWNiD+71cDaDJVNV8UW+7sts+zp0X9YNfEn+8di1rR4qNfE5ExnGgDZyd2jjQ4/GqnLL/Onmz7C0G3XFEE0iwPZlmTH5ZM5mxssL3hhqkg7cQUTtkRVNNt34jK6RIrrM+iApum+5joMJIkvG2iIcmjWkv3OFdJ6c2mVlObONrKMwVrd1JCZQIaLO8xJELNqgcR/GPxDgqI3Q7r4+QNZnW1gj+Xj4/AHkL/ryLcJtChj1Dj+8f6WlTAo2ipZaZOCwfw09IQGPahMkUyAY5M04tOjRazc76UumDNQqZfX+LcbYa7DVYBJE3Qt5/+VhHkz/mmzNfifII1A6GX5G2+YzwH4R4CcDnaXD9HVfJqZ/4JCOTase3jqtQ="
 cache:
   directories:
   - node_modules
@@ -16,7 +12,7 @@ before_script:
 - npm install -g polymer-cli
 - npm install -g codecov
 script:
-- xvfb-run npm run test && npm run test:es5 && npm  run test:es5:bs && npm run build
+- xvfb-run npm run test && npm run test:es5 && npm run build
 - codecov
 deploy:
   provider: npm
