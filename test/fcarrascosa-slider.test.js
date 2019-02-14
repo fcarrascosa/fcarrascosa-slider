@@ -92,8 +92,6 @@ describe('<fcarrascosa-slider>', () => {
   });
 
   describe('element does not have slides', () => {
-    // eslint-disable-next-line no-unused-vars
-    let element;
     let sandbox;
 
     before(() => {
@@ -102,7 +100,7 @@ describe('<fcarrascosa-slider>', () => {
     });
 
     beforeEach(async () => {
-      element = await fixture(html`<fcarrascosa-slider></fcarrascosa-slider>`);
+      await fixture(html`<fcarrascosa-slider></fcarrascosa-slider>`);
     });
 
     after(() => {
