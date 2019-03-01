@@ -3,4 +3,6 @@ node_modules/
 coverage/
 package-lock.json
 analysis.json
-build/
+build/*
+!build/index.html
+!build/index.js
