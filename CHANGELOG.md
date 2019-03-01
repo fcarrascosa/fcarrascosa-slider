@@ -1,5 +1,8 @@
-#0.6.2 to 0.6.3
+#0.6.2 to 0.6.4
 * Updated to @open-wc tooling set (webpack and storybook)
+
+#0.6.2 to 0.6.3
+* Updated mocha version
 
 #0.6.1 to 0.6.2
 * Updated tests to karma
