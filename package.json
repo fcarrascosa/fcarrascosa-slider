@@ -1,14 +1,19 @@
 {
   "name": "fcarrascosa-slider",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "A simple slider based in web components via lit-element",
   "main": "index.js",
   "scripts": {
-    "start": "polymer analyze > analysis.json && polymer serve -o",
+    "start": "webpack-dev-server --mode development --open",
+    "start:build": "http-server dist/ -o",
+    "start:es5": "webpack-dev-server --mode development --es5",
+    "start:storybook": "start-storybook -p 9001",
+    "build": "webpack --mode production",
+    "build:stats": "webpack --mode production --profile --json > bundle-stats.json",
+    "build:storybook": "build-storybook -o _site",
     "test": "karma start",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
-    "build": "polymer build",
+    "lint:fix": "eslint . --fix",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
@@ -29,6 +34,7 @@
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
+    "@open-wc/building-webpack": "^0.1.9",
     "@open-wc/testing": "^0.9.0",
     "@open-wc/testing-karma": "^0.4.0",
     "@open-wc/testing-karma-bs": "^0.2.0",
@@ -41,12 +47,16 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-html": "^5.0.3",
     "eslint-plugin-import": "^2.16.0",
+    "http-server": "^0.11.1",
     "karma-mocha": "^1.3.0",
     "karma-sinon-chai": "^2.0.2",
     "mocha": "^6.0.0",
-    "polymer-cli": "^1.9.6",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
-    "webpack-merge": "^4.1.5"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.1.5",
+    "@open-wc/storybook": "^0.2.0"
   }
 }
