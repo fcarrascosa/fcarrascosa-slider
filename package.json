@@ -34,7 +34,7 @@
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "@open-wc/building-webpack": "^0.1.9",
+    "@open-wc/building-webpack": "^1.0.0",
     "@open-wc/testing": "^0.9.0",
     "@open-wc/testing-karma": "^0.4.0",
     "@open-wc/testing-karma-bs": "^0.2.0",
