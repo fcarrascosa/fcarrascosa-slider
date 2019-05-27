@@ -2,7 +2,7 @@
 [![Uses lit-element ^2.0.1](https://img.shields.io/badge/lit--element-%5E2.0.1-red.svg)](https://www.npmjs.com/package/lit-element)
 [![Current Version](https://img.shields.io/npm/v/fcarrascosa-slider.svg?colorB=blue)](https://www.npmjs.com/package/fcarrascosa-slider)
 [![codecov](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider/branch/master/graph/badge.svg)](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider) 
-[![Build status](https://travis-ci.org/fcarrascosa/fcarrascosa-slider.svg?branch=master)](https://travis-ci.org/fcarrascosa/fcarrascosa-slider.)
+[![Build status](https://travis-ci.org/fcarrascosa/fcarrascosa-slider.svg?branch=master)](https://travis-ci.org/fcarrascosa/fcarrascosa-slider)
 [![Greenkeeper badge](https://badges.greenkeeper.io/fcarrascosa/fcarrascosa-slider.svg)](https://greenkeeper.io/)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/fcarrascosa-slider)
 

@@ -1,12 +1,9 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const defaultConfig = require('@open-wc/building-webpack/default-config');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
-module.exports = merge(defaultConfig({
-  indexHTML: path.resolve(__dirname, './build/index.html'),
-  indexJS: path.resolve(__dirname, './build/index.js'),
-}), {
+module.exports = createDefaultConfigs({
+  input: path.resolve(__dirname, './build/index.html'),
   output: {
-    path: path.resolve(process.cwd(), path.join('build', 'dist')),
+    path: path.resolve(__dirname, 'build/dist'),
   },
 });

@@ -1,6 +1,6 @@
 {
   "name": "fcarrascosa-slider",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "A simple slider based in web components via lit-element",
   "main": "index.js",
   "scripts": {
@@ -11,12 +11,12 @@
     "build": "webpack --mode production",
     "build:stats": "webpack --mode production --profile --json > bundle-stats.json",
     "build:storybook": "build-storybook -o _site",
-    "test": "karma start",
+    "test": "karma start --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
+    "test:watch": "karma start --auto-watch=true --single-run=false --coverage",
+    "test:es5": "karma start --legacy --coverage",
+    "test:es5:watch": "karma start --legacy --auto-watch=true --single-run=false --coverage"
   },
   "keywords": [
     "lit-element",
@@ -34,10 +34,12 @@
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "@open-wc/building-webpack": "^0.1.9",
-    "@open-wc/testing": "^0.9.0",
-    "@open-wc/testing-karma": "^0.4.0",
-    "@open-wc/testing-karma-bs": "^0.2.0",
+    "@open-wc/building-webpack": "^1.4.4",
+    "@open-wc/polyfills-loader": "^0.3.1",
+    "@open-wc/storybook": "^0.2.0",
+    "@open-wc/testing": "^0.12.5",
+    "@open-wc/testing-karma": "^2.0.3",
+    "@open-wc/testing-karma-bs": "^1.1.3",
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/iron-demo-helpers": "^3.0.2",
     "@polymer/iron-pages": "^3.0.1",
@@ -45,18 +47,17 @@
     "chai": "^4.2.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-html": "^5.0.3",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-html": "^5.0.5",
+    "eslint-plugin-import": "^2.17.2",
     "http-server": "^0.11.1",
     "karma-mocha": "^1.3.0",
     "karma-sinon-chai": "^2.0.2",
     "mocha": "^6.0.0",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
-    "webpack": "^4.29.6",
+    "webpack": "^4.32.2",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1",
-    "webpack-merge": "^4.1.5",
-    "@open-wc/storybook": "^0.2.0"
+    "webpack-dev-server": "^3.4.1",
+    "webpack-merge": "^4.1.5"
   }
 }
