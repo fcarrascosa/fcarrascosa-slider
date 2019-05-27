@@ -1,3 +1,6 @@
+# 0.6.4 to 0.6.5
+* Updated tooling set
+
 # 0.6.3 to 0.6.4
 * Updated to @open-wc tooling set (webpack and storybook)
 
