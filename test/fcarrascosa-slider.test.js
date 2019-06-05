@@ -41,8 +41,43 @@ describe('<fcarrascosa-slider>', () => {
       });
     });
     describe('sliding behavior', () => {
+      let sandbox;
+
+      beforeEach(() => {
+        sandbox = sinon.sandbox.create();
+      });
+
+      afterEach(() => {
+        sandbox.restore();
+      });
+
       it('should start on slide 0', () => {
         expect(element.currentSlide).to.be.equal(0);
+      });
+
+      describe('going to a slide', () => {
+        it('should stop the slider when goToSlide is called', () => {
+          sandbox.spy(element, 'pauseSlider');
+          element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
+          expect(element.pauseSlider.calledOnce).to.be.true;
+        });
+
+        it('should restart the slider when goToSlide is called', () => {
+          sandbox.spy(element, 'initSlider');
+          element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
+          expect(element.initSlider.calledOnce).to.be.true;
+        });
+
+        it('should call to selectSlide method', () => {
+          sandbox.spy(element, 'selectSlide');
+          element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
+          expect(element.selectSlide.calledOnce).to.be.true;
+        });
+
+        it('should move to the indicated slide when calling selectSlide', () => {
+          element.selectSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
+          expect(element.currentSlide).to.be.equal(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
+        });
       });
       describe('moving forwards', () => {
         describe('normal path', () => {
