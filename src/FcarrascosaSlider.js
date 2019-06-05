@@ -61,10 +61,16 @@ export default class FcarrascosaSlider extends LitElement {
     }
   }
 
+  /**
+   * Starts the sliding behavior
+   */
   initSlider() {
     this.interval = setInterval(this.goToNextSlide.bind(this), this.time * 1000);
   }
 
+  /**
+   * Stops the sliding behavior
+   */
   pauseSlider() {
     clearInterval(this.interval);
     this.interval = null;
@@ -95,8 +101,10 @@ export default class FcarrascosaSlider extends LitElement {
    * @param targetSlide
    */
   goToSlide(targetSlide) {
+    this.pauseSlider();
     this.latestSelectedSlide = this.currentSlide;
     this.selectSlide(targetSlide);
+    this.initSlider();
   }
 
   /**
