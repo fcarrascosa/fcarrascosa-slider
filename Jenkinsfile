@@ -12,16 +12,15 @@ pipeline {
         stage("Install Chromium Headless") {
             steps{
                 echo "====++++executing Install Chromium Headless++++===="
-                sh "sudo set -x"
-                sh "sudo apk update"
-                sh "sudo apk upgrade"
-                sh 'sudo echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories '
-                sh 'sudo echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories'
-                sh 'sudo echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories'
-                sh "sudo apk add --no-cache dumb-init curl make gcc g++ python linux-headers binutils-gold gnupg libstdc++ nss chromium" 
-                sh "sudo apk del --no-cache make gcc g++ python binutils-gold gnupg libstdc++"
-                sh "sudo rm -rf /usr/include"
-                sh "sudo rm -rf /var/cache/apk/* /root/.node-gyp /usr/share/man /tmp/*"
+                sh "apk update"
+                sh "apk upgrade"
+                sh 'echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories '
+                sh 'echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories'
+                sh 'echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories'
+                sh "apk add --no-cache dumb-init curl make gcc g++ python linux-headers binutils-gold gnupg libstdc++ nss chromium" 
+                sh "apk del --no-cache make gcc g++ python binutils-gold gnupg libstdc++"
+                sh "rm -rf /usr/include"
+                sh "rm -rf /var/cache/apk/* /root/.node-gyp /usr/share/man /tmp/*"
             }
             post{
                 success{
