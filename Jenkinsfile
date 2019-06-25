@@ -15,9 +15,9 @@ pipeline {
                 echo "Installing google chrome"
                 sh 'apt-get update'
                 sh 'pwd'
-                sh 'apt-get install chromium-browser'
+                sh 'apt-get install chromium'
                 sh 'echo $CHROME_BIN'
-                sh 'which chromium-browser'
+                sh 'which chromium'
             }
             post{
                 success{
