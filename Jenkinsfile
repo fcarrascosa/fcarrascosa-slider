@@ -6,7 +6,7 @@ pipeline {
         }
     }
     environment {
-        HOME = '~'
+        HOME = '.'
     }
     stages {
         stage("Install Chromium Headless") {
