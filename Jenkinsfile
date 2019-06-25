@@ -7,6 +7,7 @@ pipeline {
     }
     environment {
         HOME = '~'
+        CHROME_BIN = '/usr/bin/chromium'
     }
     stages {
         stage("Install Chromium Headless") {
