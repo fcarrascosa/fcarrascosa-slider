@@ -6,7 +6,7 @@ pipeline {
         }
     }
     environment {
-        HOME = '$(pwd)'
+        HOME = '/root'
         CHROME_BIN = '/usr/bin/chromium'
     }
     stages {
