@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:12-alpine'
+            image 'node:lts-stretch'
         }
     }
     environment {
@@ -12,15 +12,13 @@ pipeline {
         stage("Install Chromium Headless") {
             steps{
                 echo "====++++executing Install Chromium Headless++++===="
-                sh "apk update"
-                sh "apk upgrade"
-                sh 'echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories '
-                sh 'echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories'
-                sh 'echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories'
-                sh "apk add --no-cache dumb-init curl make gcc g++ python linux-headers binutils-gold gnupg libstdc++ nss chromium" 
-                sh "apk del --no-cache make gcc g++ python binutils-gold gnupg libstdc++"
-                sh "rm -rf /usr/include"
-                sh "rm -rf /var/cache/apk/* /root/.node-gyp /usr/share/man /tmp/*"
+                echo "Downloading Chrome..."
+                sh 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
+                echo "Installing google chrome"
+                sh 'pwd'
+                sh 'dpkg -i google-chrome-stable_current_amd64.deb'
+                sh 'echo $CHROME_BIN'
+                sh 'which google-chrome'
             }
             post{
                 success{
