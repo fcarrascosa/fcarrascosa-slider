@@ -2,11 +2,11 @@ pipeline {
     agent {
         docker {
             image 'node:lts-stretch'
+            args: -u root:root
         }
     }
     environment {
-        HOME = '.'
-        CHROME_BIN = '/usr/bin/chromium-browser'
+        HOME = ''
     }
     stages {
         stage("Install Chromium Headless") {
