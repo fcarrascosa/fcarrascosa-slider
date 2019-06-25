@@ -6,7 +6,6 @@ pipeline {
         }
     }
     environment {
-        HOME = '/root'
         CHROME_BIN = '/usr/bin/chromium'
     }
     stages {
