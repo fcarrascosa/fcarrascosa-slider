@@ -15,6 +15,13 @@ module.exports = (config) => {
       ],
       frameworks: ['mocha', 'sinon-chai'],
       // your custom config
+      browsers: ['HeadlessChromeWithoutSandbox'],
+      customLaunchers: {
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox'],
+        },
+      },
     }),
   );
   return config;
