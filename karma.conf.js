@@ -15,6 +15,9 @@ module.exports = (config) => {
       ],
       frameworks: ['mocha', 'sinon-chai'],
       // your custom config
+      browserDisconnectTimeout: 10000,
+      browserDisconnectTolerance: 3,
+      browserNoActivityTimeout: 60000,
       customLaunchers: {
         ChromeHeadlessNoSandbox: {
           base: 'ChromeHeadless',
