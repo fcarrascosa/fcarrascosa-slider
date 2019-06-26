@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'rastasheep/alpine-node-chromium'
-            args '-u root:root'
-        }
+        dockerfile true
     }
     stages {
         stage("Install Dependencies"){
