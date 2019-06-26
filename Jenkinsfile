@@ -1,34 +1,11 @@
 pipeline {
     agent {
         docker {
-            image 'node:lts-stretch'
+            image 'alpine-node-chromium'
             args '-u root:root'
         }
     }
-    environment {
-        CHROME_BIN = '/usr/bin/chromium'
-    }
     stages {
-        stage("Install Chromium Headless") {
-            steps{
-                echo "====++++executing Install Chromium Headless++++===="
-                echo "Installing google chrome"
-                sh 'apt-get update'
-                sh 'pwd'
-                sh 'apt-get install chromium -y'
-                sh 'echo $CHROME_BIN'
-                sh 'which chromium'
-            }
-            post{
-                success{
-                    echo "====++++Install Chromium Headless executed succesfully++++===="
-                }
-                failure{
-                    echo "====++++Install Chromium Headless execution failed++++===="
-                }
-        
-            }
-        }
         stage("Install Dependencies"){
             steps{
                 echo "====++++executing Install Dependencies++++===="
