@@ -6,3 +6,4 @@ analysis.json
 build/*
 !build/index.html
 !build/index.js
+dist/*
