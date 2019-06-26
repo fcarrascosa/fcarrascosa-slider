@@ -20,8 +20,8 @@ module.exports = (config) => {
       browserNoActivityTimeout: 60000,
       customLaunchers: {
         ChromeHeadlessNoSandbox: {
-          base: 'ChromeHeadless',
-          flags: ['--no-sandbox'],
+          base: 'Chrome',
+          flags: ['--no-sandbox', '--headless', '--disable-gpu'],
         },
       },
     }),
