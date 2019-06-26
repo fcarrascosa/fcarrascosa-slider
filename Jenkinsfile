@@ -9,7 +9,6 @@ pipeline {
         stage("Install Dependencies"){
             steps{
                 echo "====++++executing Install Dependencies++++===="
-                sh "whoami"
                 sh "npm install"
             }
             post{
@@ -25,7 +24,7 @@ pipeline {
         stage("Test"){
             steps{
                 sh 'npm run test'
-                sh 'npm run test:es'
+                sh 'npm run test:es5'
             }
             post{
                 success{
