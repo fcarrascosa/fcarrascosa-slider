@@ -6,6 +6,7 @@ pipeline {
         stage("Install Dependencies"){
             steps{
                 echo "====++++executing Install Dependencies++++===="
+                sh "whoami"
                 sh "npm install"
             }
             post{
