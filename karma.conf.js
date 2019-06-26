@@ -17,7 +17,7 @@ module.exports = (config) => {
       // your custom config
       browsers: ['HeadlessChromeWithoutSandbox'],
       customLaunchers: {
-        ChromeHeadlessNoSandbox: {
+        HeadlessChromeWithoutSandbox: {
           base: 'ChromeHeadless',
           flags: ['--no-sandbox'],
         },
