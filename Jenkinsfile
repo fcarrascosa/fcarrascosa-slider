@@ -1,7 +1,10 @@
 pipeline {
     agent {
-        dockerfile true
-        args '-u root:sudo'
+        dockerfile {
+            label 'alpine-node-chromium'
+            filename 'Dockerfile'
+            args '-u root:root'
+        }
     }
     stages {
         stage("Install Dependencies"){
