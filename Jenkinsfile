@@ -1,7 +1,6 @@
 pipeline {
     agent {
         dockerfile {
-            label 'alpine-node-chromium'
             filename 'Dockerfile'
             args '-u root:root'
         }
