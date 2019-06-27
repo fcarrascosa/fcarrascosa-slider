@@ -21,6 +21,18 @@ pipeline {
         
             }
         }
+        stage("Lint"){
+            steps{
+                echo "====++++executing Lint++++===="
+                sh 'npm run lint'
+            }
+            success{
+                echo "====++++Lint executed succesfully++++===="
+            }
+            failure{
+                echo "====++++Lint execution failed++++===="
+            }
+        }
         stage("Test"){
             steps{
                 sh 'npm run test'
