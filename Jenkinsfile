@@ -30,7 +30,6 @@ pipeline {
                 success{
                     echo "====++++Lint executed succesfully++++===="
                 }
-              }
                 failure{
                     echo "====++++Lint execution failed++++===="
                 }
