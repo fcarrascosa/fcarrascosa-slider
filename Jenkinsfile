@@ -65,21 +65,20 @@ pipeline {
         
             }
         }
-        stage("Publishing to NPM Repository"){
-            when{
-                branch 'master'
-            }
-            steps{
-                echo "====++++executing Publishing to NPM Repository++++===="
-            }
-            post{
-                success{
-                    echo "====++++Publishing to NPM Repository executed succesfully++++===="
+        when{
+            branch 'master'
+            stage("Publishing to NPM Repository"){
+                steps{
+                    echo "====++++executing Publishing to NPM Repository++++===="
                 }
-                failure{
-                    echo "====++++Publishing to NPM Repository execution failed++++===="
+                post{
+                    success{
+                        echo "====++++Publishing to NPM Repository executed succesfully++++===="
+                    }
+                    failure{
+                        echo "====++++Publishing to NPM Repository execution failed++++===="
+                    }
                 }
-        
             }
         }
     }
