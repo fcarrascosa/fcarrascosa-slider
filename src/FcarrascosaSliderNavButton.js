@@ -1,4 +1,4 @@
-import {LitElement, html, css} from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 export default class FcarrascosaSliderNavButton extends LitElement {
   static get is() { return 'fcarrascosa-slider-nav-button'; }

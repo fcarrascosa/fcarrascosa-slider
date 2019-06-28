@@ -156,17 +156,17 @@ describe('<fcarrascosa-slider>', () => {
         sandbox.restore();
       });
 
-      it('should go to next slide when clicked fcarrascosa-slider-nav-button[data-action="move-forward"]', async () => {
-        sandbox.spy(element.goToNextSlide, 'bind');
-        await element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-forward"]').dispatchEvent(new MouseEvent('click'));
-        expect(element.goToNextSlide.bind.calledOnce).to.be.true;
+      it('should go to next slide when clicked fcarrascosa-slider-nav-button[data-action="move-forward"]', () => {
+        sinon.spy(element, 'goToNextSlide');
+        element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-forward"]').click();
+        expect(element.goToNextSlide.called).to.be.true;
+        element.goToNextSlide.restore();
       });
 
-      it('should go to previous slide when clicked fcarrascosa-slider-nav-button[data-action="move-backwards"]', async () => {
-        sandbox.spy(element.goToPreviousSlide, 'bind');
-        console.log(element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-backwards"]'));
-        await element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-backwards"]').dispatchEvent(new MouseEvent('click'));
-        expect(element.goToPreviousSlide.calledOnce).to.be.true;
+      it('should go to previous slide when clicked fcarrascosa-slider-nav-button[data-action="move-backwards"]', () => {
+        sandbox.spy(element.goToPreviousSlide, 'call');
+        element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-backwards"]').click();
+        expect(element.goToPreviousSlide.call.called).to.be.true;
       });
     });
   });
