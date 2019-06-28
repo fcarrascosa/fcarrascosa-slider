@@ -66,6 +66,9 @@ pipeline {
             }
         }
         stage("Publishing to NPM Repository"){
+            when{
+                branch 'master'
+            }
             steps{
                 echo "====++++executing Publishing to NPM Repository++++===="
             }
