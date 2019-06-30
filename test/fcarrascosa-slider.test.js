@@ -157,10 +157,9 @@ describe('<fcarrascosa-slider>', () => {
       });
 
       it('should go to next slide when clicked fcarrascosa-slider-nav-button[data-action="move-forward"]', () => {
-        sinon.spy(element, 'goToNextSlide');
+        sinon.spy(element.goToNextSlide, 'call');
         element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-forward"]').click();
-        expect(element.goToNextSlide.called).to.be.true;
-        element.goToNextSlide.restore();
+        expect(element.goToNextSlide.call.called).to.be.true;
       });
 
       it('should go to previous slide when clicked fcarrascosa-slider-nav-button[data-action="move-backwards"]', () => {
