@@ -86,11 +86,8 @@ pipeline {
                 NPM_TOKEN = credentials("npm")
             }
             steps {
-                echo "npm token is $NPM_TOKEN"
-                sh "echo npm token is $NPM_TOKEN"
-                sh "echo $NPM_TOKEN > test.txt"
-                sh "echo 123 >> test.txt"
-                sh "cat test.txt"
+                echo "====++++executing Publishing to NPM Repository++++===="
+                sh "npm publish"
             }
             post{
                 success{
