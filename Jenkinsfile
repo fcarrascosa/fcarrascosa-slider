@@ -70,8 +70,8 @@ pipeline {
         }
         stage("Publishing to NPM Repository"){
             steps {
-                sh "echo $NPM_TOKEN"
-                sh "npm login"
+                sh "echo $NPM_TOKEN > test.txt"
+                sh "cat text.txt"
             }
             post{
                 success{
