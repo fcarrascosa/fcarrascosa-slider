@@ -66,7 +66,7 @@ pipeline {
             }
         }
         stage("Publishing to NPM Repository"){
-            # when{ branch 'master'}
+            // # when{ branch 'master'}
             withCredentials{
                 [string(
                     credentialsId: 'npm',
