@@ -39,7 +39,7 @@ pipeline {
             parallel{
                 stage("ES6 Unit Test"){
                     steps{
-                        echo ====++++executing ES6 Unit Test++++===="
+                        echo "====++++executing ES6 Unit Test++++===="
                         sh "npm run test"
                     }
                     post{
@@ -54,7 +54,7 @@ pipeline {
                 }
                 stage("ES5 Unit Test"){
                     steps{
-                        echo ====++++executing ES5 Unit Test++++===="
+                        echo "====++++executing ES5 Unit Test++++===="
                         sh 'npm run test:es5'
                     }
                     post{
@@ -66,6 +66,16 @@ pipeline {
                     }
 
                 }
+            }
+
+            post{
+                success{
+                    echo "====++++Test executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Test execution failed++++===="
+                }
+
             }
         }
         stage("Building Application"){
