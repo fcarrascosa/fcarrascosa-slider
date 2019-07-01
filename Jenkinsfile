@@ -50,7 +50,6 @@ pipeline {
                             echo"====++++ES6 Unit Test execution failed++++===="
                         }
                     }
-
                 }
                 stage("ES5 Unit Test"){
                     steps{
@@ -58,58 +57,56 @@ pipeline {
                         sh 'npm run test:es5'
                     }
                     post{
+                        success{
+                            echo "====++++ES5 Unit Test executed successfully++++===="
+                        }
+                        failure{
+                            echo"====++++ES5 Unit Test execution failed++++===="
+                        }
+                    }
+                }
+                post{
                     success{
-                        echo "====++++ES5 Unit Test executed successfully++++===="
+                        echo "====++++Test executed successfully++++===="
                     }
                     failure{
-                        echo"====++++ES5 Unit Test execution failed++++===="
+                        echo "====++++Test execution failed++++===="
                     }
-
                 }
             }
-
-            post{
-                success{
-                    echo "====++++Test executed successfully++++===="
+            stage("Building Application"){
+                steps{
+                    echo "====++++executing Building Application++++===="
+                    sh "npm run build"
                 }
-                failure{
-                    echo "====++++Test execution failed++++===="
-                }
-
-            }
-        }
-        stage("Building Application"){
-            steps{
-                echo "====++++executing Building Application++++===="
-                sh "npm run build"
-            }
-            post{
-                success{
-                    echo "====++++Building Application executed successfully++++===="
-                }
-                failure{
-                    echo "====++++Building Application execution failed++++===="
-                }
+                post{
+                    success{
+                        echo "====++++Building Application executed successfully++++===="
+                    }
+                    failure{
+                        echo "====++++Building Application execution failed++++===="
+                    }
         
-            }
-        }
-        stage("Publishing to NPM Repository"){
-            environment {
-                NPM_TOKEN = credentials("npm")
-            }
-            steps {
-                echo "npm token is $NPM_TOKEN"
-                sh "echo npm token is $NPM_TOKEN"
-                sh "echo $NPM_TOKEN > test.txt"
-                sh "echo 123 >> test.txt"
-                sh "cat test.txt"
-            }
-            post{
-                success{
-                    echo "====++++Publishing to NPM Repository executed successfully++++===="
                 }
-                failure{
-                    echo "====++++Publishing to NPM Repository execution failed++++===="
+            }
+            stage("Publishing to NPM Repository"){
+                environment {
+                    NPM_TOKEN = credentials("npm")
+                }
+                steps {
+                    echo "npm token is $NPM_TOKEN"
+                    sh "echo npm token is $NPM_TOKEN"
+                    sh "echo $NPM_TOKEN > test.txt"
+                    sh "echo 123 >> test.txt"
+                    sh "cat test.txt"
+                }
+                post{
+                    success{
+                        echo "====++++Publishing to NPM Repository executed successfully++++===="
+                    }
+                    failure{
+                        echo "====++++Publishing to NPM Repository execution failed++++===="
+                    }
                 }
             }
         }
