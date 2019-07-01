@@ -65,14 +65,6 @@ pipeline {
                         }
                     }
                 }
-                post{
-                    success{
-                        echo "====++++Test executed successfully++++===="
-                    }
-                    failure{
-                        echo "====++++Test execution failed++++===="
-                    }
-                }
             }
             stage("Building Application"){
                 steps{
