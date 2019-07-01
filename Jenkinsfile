@@ -71,7 +71,7 @@ pipeline {
             }
             steps {
                 sh "echo $NPM_TOKEN > test.txt"
-                sh "123 >> test.txt"
+                sh "echo 123 >> test.txt"
                 sh "cat test.txt"
             }
             post{
