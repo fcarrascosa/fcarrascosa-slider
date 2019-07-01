@@ -5,9 +5,6 @@ pipeline {
             args '-u root:root'
         }
     }
-    environment {
-        NPM_TOKEN = credentials('npm')
-    }
     stages {
         stage("Install Dependencies"){
             steps{
@@ -69,8 +66,12 @@ pipeline {
             }
         }
         stage("Publishing to NPM Repository"){
+            environment {
+                NPM_TOKEN = credentials("npm")
+            }
             steps {
                 sh "echo $NPM_TOKEN > test.txt"
+                sh "123 >> test.txt"
                 sh "cat test.txt"
             }
             post{
