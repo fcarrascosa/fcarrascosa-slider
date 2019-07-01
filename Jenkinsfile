@@ -66,39 +66,38 @@ pipeline {
                     }
                 }
             }
-            stage("Building Application"){
-                steps{
-                    echo "====++++executing Building Application++++===="
-                    sh "npm run build"
+        }
+        stage("Building Application"){
+            steps{
+                echo "====++++executing Building Application++++===="
+                sh "npm run build"
+            }
+            post{
+                success{
+                    echo "====++++Building Application executed successfully++++===="
                 }
-                post{
-                    success{
-                        echo "====++++Building Application executed successfully++++===="
-                    }
-                    failure{
-                        echo "====++++Building Application execution failed++++===="
-                    }
-        
+                failure{
+                    echo "====++++Building Application execution failed++++===="
                 }
             }
-            stage("Publishing to NPM Repository"){
-                environment {
-                    NPM_TOKEN = credentials("npm")
+        }
+        stage("Publishing to NPM Repository"){
+            environment {
+                NPM_TOKEN = credentials("npm")
+            }
+            steps {
+                echo "npm token is $NPM_TOKEN"
+                sh "echo npm token is $NPM_TOKEN"
+                sh "echo $NPM_TOKEN > test.txt"
+                sh "echo 123 >> test.txt"
+                sh "cat test.txt"
+            }
+            post{
+                success{
+                    echo "====++++Publishing to NPM Repository executed successfully++++===="
                 }
-                steps {
-                    echo "npm token is $NPM_TOKEN"
-                    sh "echo npm token is $NPM_TOKEN"
-                    sh "echo $NPM_TOKEN > test.txt"
-                    sh "echo 123 >> test.txt"
-                    sh "cat test.txt"
-                }
-                post{
-                    success{
-                        echo "====++++Publishing to NPM Repository executed successfully++++===="
-                    }
-                    failure{
-                        echo "====++++Publishing to NPM Repository execution failed++++===="
-                    }
+                failure{
+                    echo "====++++Publishing to NPM Repository execution failed++++===="
                 }
             }
         }
