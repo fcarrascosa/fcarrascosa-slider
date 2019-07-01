@@ -66,9 +66,17 @@ pipeline {
             }
         }
         stage("Publishing to NPM Repository"){
-            when{ branch 'master'}
+            # when{ branch 'master'}
+            withCredentials{
+                [string(
+                    credentialsId: 'npm',
+                    variable: 'NPM_TOKEN')
+                ]
+            }
             steps{
                 echo "====++++executing Publishing to NPM Repository++++===="
+                sh "npm login"
+                sh "echo $NPM_TOKEN"
             }
             post{
                 success{
@@ -77,7 +85,6 @@ pipeline {
                 failure{
                     echo "====++++Publishing to NPM Repository execution failed++++===="
                 }
-
             }
         }
     }
