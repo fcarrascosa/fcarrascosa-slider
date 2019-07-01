@@ -66,16 +66,17 @@ pipeline {
             }
         }
         stage("Publishing to NPM Repository"){
-            withCredentials{
-                [string(
-                    credentialsId: 'npm',
-                    variable: 'NPM_TOKEN')
-                ]
-            }
-            {
+            steps {
                 echo "====++++executing Publishing to NPM Repository++++===="
-                sh "npm login"
-                sh "echo $NPM_TOKEN"
+                withCredentials{
+                    [string(
+                        credentialsId: 'npm',
+                        variable: 'NPM_TOKEN')
+                    ]
+                }{
+                    sh "echo $NPM_TOKEN"
+                    sh "npm login"
+                }
             }
             post{
                 success{
