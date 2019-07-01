@@ -13,7 +13,7 @@ pipeline {
             }
             post{
                 success{
-                    echo "====++++Install Dependencies executed succesfully++++===="
+                    echo "====++++Install Dependencies executed successfully++++===="
                 }
                 failure{
                     echo "====++++Install Dependencies execution failed++++===="
@@ -36,13 +36,41 @@ pipeline {
             }
         }
         stage("Test"){
-            steps{
-                sh 'npm run test'
-                sh 'npm run test:es5'
+            parallel{
+                stage("ES6 Unit Test"){
+                    steps{
+                        echo ====++++executing ES6 Unit Test++++===="
+                        sh "npm run test"
+                    }
+                    post{
+                        success{
+                            echo "====++++ES6 Unit Test executed successfully++++===="
+                        }
+                        failure{
+                            echo"====++++ES6 Unit Test execution failed++++===="
+                        }
+                    }
+
+                }
+                stage("ES5 Unit Test"){
+                    steps{
+                        echo ====++++executing ES5 Unit Test++++===="
+                        sh 'npm run test:es5'
+                    }
+                    post{
+                    success{
+                        echo "====++++ES5 Unit Test executed successfully++++===="
+                    }
+                    failure{
+                        echo"====++++ES5 Unit Test execution failed++++===="
+                    }
+
+                }
             }
+
             post{
                 success{
-                    echo "====++++Test executed succesfully++++===="
+                    echo "====++++Test executed successfully++++===="
                 }
                 failure{
                     echo "====++++Test execution failed++++===="
@@ -57,7 +85,7 @@ pipeline {
             }
             post{
                 success{
-                    echo "====++++Building Application executed succesfully++++===="
+                    echo "====++++Building Application executed successfully++++===="
                 }
                 failure{
                     echo "====++++Building Application execution failed++++===="
@@ -70,13 +98,15 @@ pipeline {
                 NPM_TOKEN = credentials("npm")
             }
             steps {
+                echo "npm token is $NPM_TOKEN"
+                sh "echo npm token is $NPM_TOKEN"
                 sh "echo $NPM_TOKEN > test.txt"
                 sh "echo 123 >> test.txt"
                 sh "cat test.txt"
             }
             post{
                 success{
-                    echo "====++++Publishing to NPM Repository executed succesfully++++===="
+                    echo "====++++Publishing to NPM Repository executed successfully++++===="
                 }
                 failure{
                     echo "====++++Publishing to NPM Repository execution failed++++===="
