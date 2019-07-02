@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             args '-u root:root'
-            dir '/app/build'
+            customWorkspace '/app/build'
         }
     }
     stages {
