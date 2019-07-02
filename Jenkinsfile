@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             args '-u root:root'
-            customWorkspace '/app/build'
+            customWorkspace 'app/build'
         }
     }
     stages {
@@ -89,6 +89,7 @@ pipeline {
             steps {
                 echo "====++++executing Publishing to NPM Repository++++===="
                 sh "pwd"
+                sh 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc'
                 sh "npm publish"
             }
             post{
