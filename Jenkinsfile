@@ -82,6 +82,10 @@ pipeline {
             }
         }
         stage("Releasing new Version to GitHub") {
+            when {
+                branch 'master'
+                not { buildingTag() }
+            }
             steps {
                 sh "npm info . version"
             }
