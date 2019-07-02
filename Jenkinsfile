@@ -3,6 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             args '-u root:root'
+            dir '/app/build'
         }
     }
     stages {
@@ -87,6 +88,7 @@ pipeline {
             }
             steps {
                 echo "====++++executing Publishing to NPM Repository++++===="
+                sh "pwd"
                 sh "npm publish"
             }
             post{
