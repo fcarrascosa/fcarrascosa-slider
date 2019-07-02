@@ -81,13 +81,23 @@ pipeline {
                 }
             }
         }
-        stage("Releasing new Version to GitHub") {
+        stage("Releasing New Version to GitHub") {
             when {
                 branch 'master'
                 not { buildingTag() }
             }
             steps {
+                echo "====++++executing Releasing New Version to GitHub++++===="
                 sh "npm info . version"
+                sh "git config -l"
+            }
+            post {
+                success {
+                    echo "====++++Releasing New Version to GitHub executed successfully++++===="
+                }
+                failure {
+                    echo "====++++Releasing New Version to GitHub execution failed++++===="
+                }
             }
         }
         stage("Publishing to NPM Repository") {
