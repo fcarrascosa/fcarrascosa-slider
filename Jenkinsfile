@@ -7,88 +7,95 @@ pipeline {
         }
     }
     stages {
-        stage("Install Dependencies"){
-            steps{
+        stage("Install Dependencies") {
+            steps {
                 echo "====++++executing Install Dependencies++++===="
                 sh "npm install"
             }
-            post{
-                success{
+            post {
+                success {
                     echo "====++++Install Dependencies executed successfully++++===="
                 }
-                failure{
+                failure {
                     echo "====++++Install Dependencies execution failed++++===="
                 }
-        
             }
         }
-        stage("Lint"){
-            steps{
+        stage("Lint") {
+            steps {
                 echo "====++++executing Lint++++===="
                 sh 'npm run lint'
             }
             post {
-                success{
+                success {
                     echo "====++++Lint executed succesfully++++===="
                 }
-                failure{
+                failure {
                     echo "====++++Lint execution failed++++===="
                 }
             }
         }
-        stage("Test"){
-            parallel{
-                stage("ES6 Unit Test"){
-                    steps{
+        stage("Test") {
+            parallel {
+                stage("ES6 Unit Test") {
+                    steps {
                         echo "====++++executing ES6 Unit Test++++===="
                         sh "npm run test"
                     }
-                    post{
-                        success{
+                    post {
+                        success {
                             echo "====++++ES6 Unit Test executed successfully++++===="
                         }
-                        failure{
+                        failure {
                             echo"====++++ES6 Unit Test execution failed++++===="
                         }
                     }
                 }
-                stage("ES5 Unit Test"){
-                    steps{
+                stage("ES5 Unit Test") {
+                    steps {
                         echo "====++++executing ES5 Unit Test++++===="
                         sh 'npm run test:es5'
                     }
-                    post{
-                        success{
+                    post {
+                        success {
                             echo "====++++ES5 Unit Test executed successfully++++===="
                         }
-                        failure{
+                        failure {
                             echo"====++++ES5 Unit Test execution failed++++===="
                         }
                     }
                 }
             }
         }
-        stage("Building Application"){
-            steps{
+        stage("Building Application") {
+            steps {
                 echo "====++++executing Building Application++++===="
                 sh "npm run build"
             }
-            post{
-                success{
+            post {
+                success {
                     echo "====++++Building Application executed successfully++++===="
                 }
-                failure{
+                failure {
                     echo "====++++Building Application execution failed++++===="
                 }
             }
         }
-        stage("Publishing to NPM Repository"){
+        stage("Releasing new Version to GitHub") {
+            steps {
+                sh "npm info . version"
+            }
+        }
+        stage("Publishing to NPM Repository") {
+            when {
+                branch 'master'
+                buildingTag()
+            }
             environment {
                 NPM_TOKEN = credentials("npm")
             }
             steps {
                 echo "====++++executing Publishing to NPM Repository++++===="
-                sh "pwd"
                 sh 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc'
                 sh "npm publish"
             }
