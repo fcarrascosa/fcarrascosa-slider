@@ -11,6 +11,7 @@ RUN \
   && apk add --no-cache --virtual .build-deps \
     gifsicle pngquant optipng libjpeg-turbo-utils \
     udev ttf-opensans chromium \
+    bash git openssh \
   && rm -rf /var/cache/apk/* /tmp/*
 
 ENV CHROME_BIN /usr/bin/chromium-browser
