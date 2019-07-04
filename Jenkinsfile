@@ -88,6 +88,8 @@ pipeline {
             }
             steps {
                 echo "====++++executing Releasing New Version to GitHub++++===="
+                sh "git config user.name ${scmvars.GIT_AUTHOR_NAME}"
+                sh "git config user.email ${scmvars.GIT_AUTHOR_EMAIL}"
                 sh "npm info . version"
                 sh "git config -l"
             }
