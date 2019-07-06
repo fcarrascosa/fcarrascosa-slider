@@ -2,7 +2,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-            args '-u root:root'
+            args '-u root:root -v /home/fcarrascosa/Utilities/Jenkins/scripts:/app/scripts'
             customWorkspace 'app/build'
         }
     }
@@ -92,6 +92,9 @@ pipeline {
                 sh "git config user.email $GIT_AUTHOR_EMAIL"
                 sh "sh /app/scripts/versioning-component.sh"
                 sh "git status"
+                sh "git add package.json"
+                sh "git add CHANGELOG.md"
+                sh "git commit -m 'release: update version to '"
             }
             post {
                 success {
