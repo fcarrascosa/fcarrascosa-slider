@@ -90,8 +90,8 @@ pipeline {
                 echo "====++++executing Releasing New Version to GitHub++++===="
                 sh "git config user.name $GIT_AUTHOR_NAME"
                 sh "git config user.email $GIT_AUTHOR_EMAIL"
-                sh "npm info . version"
-                sh "git config -l"
+                sh "sh /app/scripts/versioning-component.sh"
+                sh "git status"
             }
             post {
                 success {
