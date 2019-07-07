@@ -95,6 +95,7 @@ pipeline {
                 sh "git add package.json"
                 sh "git add CHANGELOG.md"
                 sh "git commit -m 'release: update version to '"
+                sh "git push origin --tags"
             }
             post {
                 success {
