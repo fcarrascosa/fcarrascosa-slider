@@ -83,14 +83,14 @@ pipeline {
         }
         stage("Releasing New Version to GitHub") {
             when {
-                branch 'master'
+                //branch 'master'
                 not { buildingTag() }
             }
             steps {
                 echo "====++++executing Releasing New Version to GitHub++++===="
                 sh "git config user.name $GIT_AUTHOR_NAME"
                 sh "git config user.email $GIT_AUTHOR_EMAIL"
-                bash "/app/scripts/versioning-component.sh"
+                sh "/app/scripts/versioning-component.sh"
                 sh "git status"
                 sh "git add package.json"
                 sh "git add CHANGELOG.md"
