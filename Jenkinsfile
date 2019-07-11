@@ -66,18 +66,24 @@ pipeline {
                     }
                 }
             }
+            post {
+                always {
+                    echo "Test Stage Finished - Publishing Test Results"
+                    junit 'coverage/**/*.xml'
+                }
+            }
         }
-        stage("Building Application") {
+        stage("Building Component") {
             steps {
-                echo "====++++executing Building Application++++===="
+                echo "====++++executing Building Component++++===="
                 sh "npm run build"
             }
             post {
                 success {
-                    echo "====++++Building Application executed successfully++++===="
+                    echo "====++++Building Component executed successfully++++===="
                 }
                 failure {
-                    echo "====++++Building Application execution failed++++===="
+                    echo "====++++Building Component execution failed++++===="
                 }
             }
         }
@@ -131,8 +137,6 @@ pipeline {
     }
     post {
         always {
-            echo "Build Finished Publishing Test Results"
-            junit 'coverage/**/*.xml'
             echo "Build Finished - Clearing Workspace"
             sh "chmod -R 777 ."
             deleteDir()
