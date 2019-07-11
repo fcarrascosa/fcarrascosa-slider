@@ -131,6 +131,8 @@ pipeline {
     }
     post {
         always {
+            echo "Build Finished Publishing Test Results"
+            junit 'coverage/**/*.xml'
             echo "Build Finished - Clearing Workspace"
             sh "chmod -R 777 ."
             deleteDir()
