@@ -13,7 +13,14 @@ module.exports = (config) => {
           type: 'module',
         },
       ],
+      plugins: ['karma-junit-reporter'],
+      reporters: ['junit'],
       frameworks: ['mocha', 'sinon-chai'],
+      junitReporter: {
+        outputFile: 'test-results.xml',
+        outputDir: 'coverage',
+        useBrowserName: false,
+      },
       // your custom config
     }),
   );
