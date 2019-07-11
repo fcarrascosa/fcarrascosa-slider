@@ -83,7 +83,7 @@ pipeline {
         }
         stage("Releasing New Version to GitHub") {
             when {
-                //branch 'master'
+                branch 'master'
                 not { buildingTag() }
             }
             steps {
