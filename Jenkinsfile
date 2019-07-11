@@ -129,4 +129,15 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            stages {
+                stage("Restore permissions") {
+                    steps {
+                        sh "chmod -R jenkins:jenkins *"
+                    }
+                }
+            }
+        }
+    }
 }
