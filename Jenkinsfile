@@ -131,7 +131,8 @@ pipeline {
     }
     post {
         always {
-            sh "chmod -R jenkins:jenkins *"
+            echo "Build Finished - Clearing Workspace"
+            deleteDir()
         }
     }
 }
