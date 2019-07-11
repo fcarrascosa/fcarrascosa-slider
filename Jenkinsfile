@@ -132,6 +132,7 @@ pipeline {
     post {
         always {
             echo "Build Finished - Clearing Workspace"
+            sh "chown -R jenkins:jenkins ."
             deleteDir()
         }
     }
