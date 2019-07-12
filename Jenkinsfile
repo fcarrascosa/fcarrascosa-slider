@@ -71,14 +71,6 @@ pipeline {
                     echo "Test Stage Finished - Publishing Test Results"
                     junit 'coverage/test-results.xml'
                     cobertura coberturaReportFile: 'coverage/cobertura-coverage.xml'
-                    publishHTML target: [
-                            allowMissing: false,
-                            alwaysLinkToLastBuild: false,
-                            keepAll: true,
-                            reportDir: 'coverage',
-                            reportFiles: 'index.html',
-                            reportName: 'RCov Report'
-                    ]
                 }
             }
         }
