@@ -1,6 +1,6 @@
 {
   "name": "fcarrascosa-slider",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "A simple slider based in web components via lit-element",
   "main": "index.js",
   "scripts": {

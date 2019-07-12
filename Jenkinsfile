@@ -2,7 +2,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-            args '-u root:root -v /home/fcarrascosa/Utilities/Jenkins/scripts:/app/scripts'
+            args '-u root:root -v /home/fcarrascosa/Utilities/Jenkins/scripts:/app/scripts -v /var/lib/jenkins/.ssh:/root/.ssh'
             customWorkspace 'app/build'
         }
     }
@@ -97,10 +97,8 @@ pipeline {
                 sh "git config user.name $GIT_AUTHOR_NAME"
                 sh "git config user.email $GIT_AUTHOR_EMAIL"
                 sh "/app/scripts/versioning-component.sh"
-                sh "git status"
-                sh "git add package.json"
-                sh "git add CHANGELOG.md"
-                sh "git commit -m 'release: update version to '"
+                sh "git tag"
+                sh "git push origin master"
                 sh "git push origin --tags"
             }
             post {
@@ -118,7 +116,7 @@ pipeline {
                 buildingTag()
             }
             environment {
-                NPM_TOKEN = credentials("npm")
+                NPM_TOKEN = credentials("fcarrascpsa-npm")
             }
             steps {
                 echo "====++++executing Publishing to NPM Repository++++===="
