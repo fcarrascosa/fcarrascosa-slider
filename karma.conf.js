@@ -13,6 +13,8 @@ module.exports = (config) => {
           type: 'module',
         },
       ],
+      plugins: ['karma-junit-reporter'],
+      reporters: ['junit'],
       frameworks: ['mocha', 'sinon-chai'],
       junitReporter: {
         outputFile: 'test-results.xml',
