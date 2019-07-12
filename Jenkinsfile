@@ -70,6 +70,14 @@ pipeline {
                 always {
                     echo "Test Stage Finished - Publishing Test Results"
                     junit 'coverage/**/*.xml'
+                    publishHTML target: [
+                            allowMissing: false,
+                            alwaysLinkToLastBuild: false,
+                            keepAll: true,
+                            reportDir: 'coverage',
+                            reportFiles: 'index.html',
+                            reportName: 'RCov Report'
+                    ]
                 }
             }
         }
