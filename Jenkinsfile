@@ -70,6 +70,7 @@ pipeline {
                 always {
                     echo "Test Stage Finished - Publishing Test Results"
                     junit 'coverage/**/*.xml'
+                    cobertura coberturaReportFile: 'coverage/cobertura-coverage.xml'
                     publishHTML target: [
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
