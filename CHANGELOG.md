@@ -1,4 +1,6 @@
 # [Unreleased]
+
+# 0.6.6 to 0.6.7
 * Remove .travis.yml
 * Add Dockerfile and Jenkinsfile to Build with Jenkins
 
