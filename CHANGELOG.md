@@ -1,4 +1,6 @@
 # [Unreleased]
+
+# 0.6.7 to 0.7.0
 * Release version 1.0.0
 
 # 0.6.6 to 0.6.7
