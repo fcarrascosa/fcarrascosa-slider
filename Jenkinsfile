@@ -113,11 +113,10 @@ pipeline {
         }
         stage("Publishing to NPM Repository") {
             when {
-                branch 'master'
                 buildingTag()
             }
             environment {
-                NPM_TOKEN = credentials("fcarrascpsa-npm")
+                NPM_TOKEN = credentials("fcarrascosa-npm")
             }
             steps {
                 echo "====++++executing Publishing to NPM Repository++++===="

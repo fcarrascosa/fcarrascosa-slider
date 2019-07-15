@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
+import './fcarrascosa-slider-nav-button-register';
 
 /**
  * @customElement
@@ -27,7 +28,6 @@ export default class FcarrascosaSlider extends LitElement {
       totalAmountOfSlides: {
         type: Number,
       },
-
       /**
        * The time (in seconds) each slide will be displayed.
        */
@@ -38,6 +38,12 @@ export default class FcarrascosaSlider extends LitElement {
 
       interval: {
         type: Function,
+      },
+
+      withNavButtons: {
+        type: Boolean,
+        attribute: 'controls',
+        reflect: true,
       },
     };
   }
@@ -61,12 +67,18 @@ export default class FcarrascosaSlider extends LitElement {
     }
   }
 
+  /**
+   * Starts the sliding behavior
+   */
   initSlider() {
-    this.interval = setInterval(this.goToNextSlide.bind(this), this.time * 1000);
+    this.interval = setTimeout(this.goToNextSlide.bind(this), this.time * 1000);
   }
 
+  /**
+   * Stops the sliding behavior
+   */
   pauseSlider() {
-    clearInterval(this.interval);
+    clearTimeout(this.interval);
     this.interval = null;
   }
 
@@ -95,8 +107,10 @@ export default class FcarrascosaSlider extends LitElement {
    * @param targetSlide
    */
   goToSlide(targetSlide) {
+    this.pauseSlider();
     this.latestSelectedSlide = this.currentSlide;
     this.selectSlide(targetSlide);
+    this.initSlider();
   }
 
   /**
@@ -106,6 +120,12 @@ export default class FcarrascosaSlider extends LitElement {
   selectSlide(slideToSelect) {
     this.querySelectorAll('fcarrascosa-slider-slide').forEach((slide, index) => {
       slide.setAttribute('selected', index === slideToSelect);
+      slide.setAttribute('previous', index === (slideToSelect === 0
+        ? this.totalAmountOfSlides - 1
+        : slideToSelect - 1));
+      slide.setAttribute('next', index === (this.totalAmountOfSlides - 1 === slideToSelect
+        ? 0
+        : slideToSelect + 1));
     });
     this.currentSlide = slideToSelect;
   }
@@ -121,10 +141,46 @@ export default class FcarrascosaSlider extends LitElement {
       }
       
       ::slotted(fcarrascosa-slider-slide) {
-        left: 0;
         position: relative;
         top: 0;
         width: 100%;
+        display: none;
+        transition: all .5s;
+      }
+      
+      ::slotted(fcarrascosa-slider-slide[selected="true"]), 
+      ::slotted(fcarrascosa-slider-slide[next="true"]), 
+      ::slotted(fcarrascosa-slider-slide[previous="true"]) {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      ::slotted(fcarrascosa-slider-slide[next="true"]) {
+        left: 100%;
+      }
+      
+      ::slotted(fcarrascosa-slider-slide[previous="true"]) {
+        left: -100%;
+      }
+      
+      ::slotted(fcarrascosa-slider-slide[selected="true"]) {
+        left: 0;
+        position: relative;
+      }
+      
+      fcarrascosa-slider-nav-button {
+        position: absolute;
+        left: 0;
+        z-index: 10;
+        height: 100%;
+        width: 40px;
+      }
+      
+      fcarrascosa-slider-nav-button[data-action="move-forward"] {
+        transform: rotate(180deg);
+        left: calc(100% - 40px);
       }
     `;
   }
@@ -132,7 +188,14 @@ export default class FcarrascosaSlider extends LitElement {
   // eslint-disable-next-line class-methods-use-this
   render() {
     return html`
-            <slot></slot>
+        ${this.withNavButtons
+    ? html`
+        <fcarrascosa-slider-nav-button data-action="move-backwards" message="Previous" @click="${this.goToPreviousSlide}"></fcarrascosa-slider-nav-button>
+        <fcarrascosa-slider-nav-button data-action="move-forward" message="Next" @click="${this.goToNextSlide}"></fcarrascosa-slider-nav-button>
+    `
+    : ''}
+            
+        <slot></slot>
         `;
   }
 }
