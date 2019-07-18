@@ -43,19 +43,14 @@ export default class FcarrascosaSliderSlide extends LitElement {
   static get styles() {
     return css`
       :host {
+        overflow: hidden;
         display: block;
-        height: 0;
-        opacity: 0;
+        height: auto;
+        opacity: 1;
         position: relative;
         transition: opacity 1.5s ease-in-out;
         width: 100%;
       }
-      
-      :host([selected="true"]) {
-        height: auto;
-        opacity: 1;
-      }
-      
       img {
         display: block;
         width: 100%;
@@ -64,8 +59,7 @@ export default class FcarrascosaSliderSlide extends LitElement {
         bottom: 20px;
         box-sizing: border-box;
         left: 0;
-        opacity: 0;
-        padding: 0 20px;
+        padding: 0 1rem;
         position: absolute;
         transition: opacity 1.5s ease-in-out;
         width: 100%;
