@@ -1,5 +1,5 @@
 # fcarrascosa-slider 
-[![Uses lit-element ^2.0.1](https://img.shields.io/badge/lit--element-%5E2.0.1-red.svg)](https://www.npmjs.com/package/lit-element)
+[![Uses lit-element ^2.2.1](https://img.shields.io/badge/lit--element-%5E2.2.1-red.svg)](https://www.npmjs.com/package/lit-element)
 [![Current Version](https://img.shields.io/npm/v/fcarrascosa-slider.svg?colorB=blue)](https://www.npmjs.com/package/fcarrascosa-slider)
 [![codecov](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider/branch/master/graph/badge.svg)](https://codecov.io/gh/fcarrascosa/fcarrascosa-slider) 
 [![Build Status](https://jenkins.fcarrascosa.es/buildStatus/icon?job=fcarrascosa-slider%2Fmaster)](https://jenkins.fcarrascosa.es/job/fcarrascosa-slider/job/master/)
