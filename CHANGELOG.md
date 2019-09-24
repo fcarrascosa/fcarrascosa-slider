@@ -1,5 +1,9 @@
 # [Unreleased]
 
+# 1.0.0 to 1.2.0
+
+# 1.0.0 to 1.1.0
+
 # 0.7.0 to 1.0.0
 * Release version 1.0.0
 
