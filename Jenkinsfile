@@ -142,7 +142,7 @@ pipeline {
             emailext(
                     mimeType: 'text/html',
                     subject: "[JENKINS] - ${currentBuild.currentResult} - ${env.JOB_NAME}",
-                    to: "$DEFAULT_RECIPIENTS",
+                    //to: "$DEFAULT_RECIPIENTS",
                     body: '''${SCRIPT, template="groovy-html.template"}'''
             )
         }
