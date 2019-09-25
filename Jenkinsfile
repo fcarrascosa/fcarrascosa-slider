@@ -143,9 +143,9 @@ pipeline {
                     mimeType: 'text/html',
                     subject: "[JENKINS] - ${currentBuild.currentResult} - ${env.JOB_NAME}",
                     to: "fcarrascosa@fcarrascosa.es",
-                    body: """
+                    body: '''
                         ${SCRIPT, template="groovy-html.template"}
-                    """
+                    '''
             )
         }
     }
