@@ -141,11 +141,10 @@ pipeline {
             echo "Sending email to owner"
             emailext(
                     mimeType: 'text/html',
-                    subject: "[JENKINS] - ${env.JOB_NAME} - ${currentBuild.currentResult}",
+                    subject: "[JENKINS] - ${currentBuild.currentResult} - ${env.JOB_NAME}",
                     to: "fcarrascosa@fcarrascosa.es",
                     body: """
-                        <h1>${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER}</h1>
-                        ${env.BUILD_URL}
+                        ${SCRIPT, template="groovy-html.template"}
                     """
             )
         }
