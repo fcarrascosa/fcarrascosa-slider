@@ -138,6 +138,13 @@ pipeline {
             echo "Build Finished - Clearing Workspace"
             sh "chmod -R 777 ."
             deleteDir()
+            echo "Sending email to owner"
+            emailext(
+                    mimeType: 'text/html',
+                    subject: "[JENKINS] - ${currentBuild.currentResult} - ${env.JOB_NAME}",
+                    to: '$DEFAULT_RECIPIENTS',
+                    body: '''${SCRIPT, template="groovy-html.template"}'''
+            )
         }
     }
 }
