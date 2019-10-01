@@ -1,4 +1,6 @@
 # [Unreleased]
+
+# 1.0.0 to 1.1.0
 * Add swiping behavior
 
 # 0.7.0 to 1.0.0
