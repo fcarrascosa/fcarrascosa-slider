@@ -135,6 +135,193 @@ describe('<fcarrascosa-slider>', () => {
           });
         });
       });
+      describe('swiping behavior', () => {
+        const eventGenerator = (event, position) => {
+          const swipeEvent = new CustomEvent(event, {});
+          if (event.startsWith('mouse')) {
+            swipeEvent.clientX = position;
+          } else {
+            swipeEvent.changedTouches = [];
+            swipeEvent.changedTouches[0] = { clientX: position };
+          }
+
+          return swipeEvent;
+        };
+
+        it('it should do nothing after moving less than 10px with mouse right side', () => {
+          const mousedown = eventGenerator('mousedown', 10);
+          const mouseup = eventGenerator('mouseup', 11);
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          expect(element.currentSlide).to.be.equal(currentSlide);
+        });
+
+        it('it should do nothing after moving less than 10px with mouse left side', () => {
+          const mousedown = eventGenerator('mousedown', 10);
+          const mouseup = eventGenerator('mouseup', 9);
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          expect(element.currentSlide).to.be.equal(currentSlide);
+        });
+
+        it('it should do nothing after moving less than 10px with finger right side', async () => {
+          const mousedown = eventGenerator('touchstart', 10);
+          const mouseup = eventGenerator('touchend', 11);
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          await expect(element.currentSlide).to.be.equal(currentSlide);
+        });
+
+        it('it should do nothing after moving less than 10px with finger left side', async () => {
+          const mousedown = eventGenerator('touchstart', 10);
+          const mouseup = eventGenerator('touchend', 9);
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          await expect(element.currentSlide).to.be.equal(currentSlide);
+        });
+
+        it('should go to next slide after moving more than 10px with the mouse left side', async () => {
+          const mousedown = eventGenerator('mousedown', 100);
+          const mouseup = eventGenerator('mouseup', 89);
+
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          await expect(element.currentSlide).to.be.equal(currentSlide + 1);
+        });
+
+        it('should go to previous slide after moving more than 10px with the mouse left side', async () => {
+          const mousedown = eventGenerator('mousedown', 89);
+          const mouseup = eventGenerator('mouseup', 100);
+
+          await element.goToNextSlide();
+
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          await expect(element.currentSlide).to.be.equal(currentSlide - 1);
+        });
+
+        it('should go to next slide after moving more than 10px with the finger left side', async () => {
+          const mousedown = eventGenerator('touchstart', 100);
+          const mouseup = eventGenerator('touchend', 89);
+
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          await expect(element.currentSlide).to.be.equal(currentSlide + 1);
+        });
+
+        it('should go to previous slide after moving more than 10px with the finger left side', async () => {
+          const mousedown = eventGenerator('touchstart', 89);
+          const mouseup = eventGenerator('touchend', 100);
+
+          await element.goToNextSlide();
+
+          const { currentSlide } = element;
+
+          element.dispatchEvent(mousedown);
+          element.dispatchEvent(mouseup);
+
+          await expect(element.currentSlide).to.be.equal(currentSlide - 1);
+        });
+
+        describe('while dragging', () => {
+          it('should should do nothing if there is no dragInit property and move with mouse to right', async () => {
+            const dragEvent = eventGenerator('mousemove', -10);
+
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('');
+          });
+
+          it('should should do nothing if there is no dragInit property and move with finger to right', async () => {
+            const dragEvent = eventGenerator('touchmove', -10);
+
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('');
+          });
+
+          it('should should do nothing if there is no dragInit property and move with mouse to left', async () => {
+            const dragEvent = eventGenerator('mousemove', 10);
+
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('');
+          });
+
+          it('should should do nothing if there is no dragInit property and move with finger to left', async () => {
+            const dragEvent = eventGenerator('touchmove', 10);
+
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('');
+          });
+
+          it('should move main slider to right when moving with mouse', async () => {
+            const dragEvent = eventGenerator('mousemove', -10);
+
+            element.dragInit = 1;
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('-11px');
+          });
+
+          it('should move main slider to right when moving with touch', async () => {
+            const dragEvent = eventGenerator('touchmove', -10);
+
+            element.dragInit = 1;
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('-11px');
+          });
+
+          it('should move main slider to right when moving with mouse', async () => {
+            const dragEvent = eventGenerator('mousemove', 10);
+
+            element.dragInit = 1;
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('9px');
+          });
+
+          it('should move main slider to right when moving with touch', async () => {
+            const dragEvent = eventGenerator('touchmove', 10);
+
+            element.dragInit = 1;
+            element.dispatchEvent(dragEvent);
+
+            const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
+            await expect(currentSlide.style.left).to.be.equal('9px');
+          });
+        });
+      });
     });
     describe('element with navigation controls', () => {
       let element;

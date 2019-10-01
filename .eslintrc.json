@@ -4,5 +4,13 @@
         "browser": true,
         "node": true,
         "mocha": true
+    },
+    "rules": {
+        "no-param-reassign": [
+            "error", {
+                "props": true,
+                "ignorePropertyModificationsFor": ["slide"]
+            }
+        ]
     }
 }

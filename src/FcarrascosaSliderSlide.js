@@ -86,7 +86,7 @@ export default class FcarrascosaSliderSlide extends LitElement {
 
   render() {
     return html`
-        <img src="${this.image}" alt="${this.caption || this.alt}" title="${this.caption || this.alt}">
+        <img src="${this.image}" alt="${this.caption || this.alt}" title="${this.caption || this.alt}" draggable="false">
         ${this.renderCaption()}      
         `;
   }

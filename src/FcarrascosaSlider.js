@@ -50,9 +50,21 @@ export default class FcarrascosaSlider extends LitElement {
 
   constructor() {
     super();
+    this.onSwipeStart = this.onSwipeStart.bind(this);
+    this.onSwipeEnd = this.onSwipeEnd.bind(this);
+    this.onDrag = this.onDrag.bind(this);
+
     this.currentSlide = 0;
     this.latestSelectedSlide = null;
     this.totalAmountOfSlides = this.querySelectorAll('fcarrascosa-slider-slide').length;
+    this.addEventListener('mousedown', this.onSwipeStart, { passive: false });
+    this.addEventListener('touchstart', this.onSwipeStart, { passive: false });
+
+    this.addEventListener('mousemove', this.onDrag, false);
+    this.addEventListener('touchmove', this.onDrag, false);
+
+    this.addEventListener('mouseup', this.onSwipeEnd, { passive: false });
+    this.addEventListener('touchend', this.onSwipeEnd, { passive: false });
   }
 
   connectedCallback() {
@@ -65,6 +77,63 @@ export default class FcarrascosaSlider extends LitElement {
       this.goToSlide(0);
       this.initSlider();
     }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    this.removeEventListener('mousedown', this.onSwipeStart);
+    this.removeEventListener('touchstart', this.onSwipeStart);
+
+    this.removeEventListener('mousemove', this.onDrag);
+    this.removeEventListener('touchmove', this.onDrag);
+
+    this.removeEventListener('mouseup', this.onSwipeEnd);
+    this.removeEventListener('touchend', this.onSwipeEnd);
+  }
+
+  onSwipeStart(e) {
+    this.dragInit = e.clientX || e.changedTouches[0].clientX;
+  }
+
+  onDrag(e) {
+    this.pauseSlider();
+    if (this.dragInit) {
+      const slides = this.querySelectorAll('fcarrascosa-slider-slide[previous="true"], fcarrascosa-slider-slide[next="true"], fcarrascosa-slider-slide[selected="true"]');
+      const movement = (e.clientX || e.changedTouches[0].clientX) - this.dragInit;
+      slides.forEach((slide) => {
+        slide.style.transition = 'none';
+        switch ('true') {
+          case slide.getAttribute('next'):
+            slide.style.left = `${slide.offsetWidth + movement}px`;
+            break;
+          case slide.getAttribute('previous'):
+            slide.style.left = `${-slide.offsetWidth + movement}px`;
+            break;
+          default:
+            slide.style.left = `${movement}px`;
+            break;
+        }
+      });
+    }
+  }
+
+  onSwipeEnd(e) {
+    this.dragEnd = e.clientX || e.changedTouches[0].clientX;
+
+    if (this.dragInit - this.dragEnd > 10) {
+      this.goToNextSlide();
+    } else if (this.dragEnd - this.dragInit > 10) {
+      this.goToPreviousSlide();
+    }
+
+    const slides = this.querySelectorAll('fcarrascosa-slider-slide');
+
+    slides.forEach((slide) => {
+      slide.removeAttribute('style');
+    });
+
+    [this.dragInit, this.dragEnd] = [0, 0];
   }
 
   /**
