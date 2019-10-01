@@ -145,8 +145,6 @@ describe('<fcarrascosa-slider>', () => {
             swipeEvent.changedTouches[0] = { clientX: position };
           }
 
-          console.log(swipeEvent);
-
           return swipeEvent;
         };
 
@@ -247,7 +245,6 @@ describe('<fcarrascosa-slider>', () => {
         });
 
         describe('while dragging', () => {
-
           it('should should do nothing if there is no dragInit property and move with mouse to right', async () => {
             const dragEvent = eventGenerator('mousemove', -10);
 
@@ -323,7 +320,6 @@ describe('<fcarrascosa-slider>', () => {
             const currentSlide = await element.querySelector('fcarrascosa-slider-slide[selected="true"]');
             await expect(currentSlide.style.left).to.be.equal('9px');
           });
-
         });
       });
     });
