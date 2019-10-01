@@ -105,11 +105,9 @@ export default class FcarrascosaSlider extends LitElement {
         slide.style.transition = 'none';
         switch ('true') {
           case slide.getAttribute('next'):
-            console.log(slide.offsetWidth, movement, slide.offsetWidth + movement);
             slide.style.left = `${slide.offsetWidth + movement}px`;
             break;
           case slide.getAttribute('previous'):
-            console.log(slide.offsetWidth, movement, -slide.offsetWidth + movement);
             slide.style.left = `${-slide.offsetWidth + movement}px`;
             break;
           default:
