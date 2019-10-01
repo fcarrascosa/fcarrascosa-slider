@@ -121,9 +121,9 @@ export default class FcarrascosaSlider extends LitElement {
   onSwipeEnd(e) {
     this.dragEnd = e.clientX || e.changedTouches[0].clientX;
 
-    if (this.dragEnd - 10 < this.dragInit) {
+    if (this.dragInit - this.dragEnd > 10) {
       this.goToNextSlide();
-    } else if (this.dragEnd - 10 > this.dragInit) {
+    } else if (this.dragEnd - this.dragInit > 10) {
       this.goToPreviousSlide();
     }
 
