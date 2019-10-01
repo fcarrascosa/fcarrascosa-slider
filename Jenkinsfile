@@ -91,7 +91,6 @@ pipeline {
         stage("Releasing New Version to GitHub") {
             when {
                 branch 'master'
-                not { buildingTag() }
             }
             steps {
                 echo "====++++executing Releasing New Version to GitHub++++===="
