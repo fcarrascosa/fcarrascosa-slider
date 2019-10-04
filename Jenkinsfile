@@ -96,10 +96,11 @@ pipeline {
                 echo "====++++executing Releasing New Version to GitHub++++===="
                 sh "git config user.name $GIT_AUTHOR_NAME"
                 sh "git config user.email $GIT_AUTHOR_EMAIL"
-                sh(
+                def versioningComponentScript = sh(
                     returnStdout: true,
-                    script: "curl https://raw.githubusercontent.com/fcarrascosa/scripts/master/versioning-component.sh | sh"
+                    script: "curl https://raw.githubusercontent.com/fcarrascosa/scripts/master/versioning-component.sh"
                 )
+                sh versioningComponentScript
                 sh "git tag"
                 sh "git push origin master"
                 sh "git push origin --tags"
