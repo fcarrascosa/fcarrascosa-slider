@@ -96,7 +96,7 @@ pipeline {
                 echo "====++++executing Releasing New Version to GitHub++++===="
                 sh "git config user.name $GIT_AUTHOR_NAME"
                 sh "git config user.email $GIT_AUTHOR_EMAIL"
-                sh 'curl https://raw.githubusercontent.com/fcarrascosa/scripts/master/versioning-component.sh | sh'
+                sh 'curl https://raw.githubusercontent.com/fcarrascosa/scripts/master/versioning-component.sh | bash'
                 sh "git tag"
                 sh "git push origin master"
                 sh "git push origin --tags"
