@@ -2,7 +2,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-            args '-u root:root -v /home/fcarrascosa/Utilities/Jenkins/scripts:/app/scripts -v /var/lib/jenkins/.ssh:/root/.ssh'
+           args '-u root:root'
             customWorkspace 'app/build'
         }
     }
@@ -94,12 +94,15 @@ pipeline {
             }
             steps {
                 echo "====++++executing Releasing New Version to GitHub++++===="
-                sh "git config user.name $GIT_AUTHOR_NAME"
-                sh "git config user.email $GIT_AUTHOR_EMAIL"
-                sh "/app/scripts/versioning-component.sh"
-                sh "git tag"
-                sh "git push origin master"
-                sh "git push origin --tags"
+
+                sshagent(credentials: ['fcarrascosa-ssh']) {
+                    sh "git config user.name $GIT_AUTHOR_NAME"
+                    sh "git config user.email $GIT_AUTHOR_EMAIL"
+                    sh 'curl https://raw.githubusercontent.com/fcarrascosa/scripts/master/versioning-component.sh | bash'
+                    sh "git tag"
+                    sh "git push origin master"
+                    sh "git push origin --tags"
+                }
             }
             post {
                 success {
