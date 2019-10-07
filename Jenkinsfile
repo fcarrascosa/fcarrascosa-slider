@@ -2,14 +2,14 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-           args '-u root:root'
+            args '-u root:root'
             customWorkspace 'app/build'
         }
     }
     stages {
         stage("Install Dependencies") {
             steps {
-                echo "====++++executing Install Dependencies++++===="
+                echo "====++ca++executing Install Dependencies++++===="
                 sh "npm install"
             }
             post {
@@ -96,6 +96,8 @@ pipeline {
                 echo "====++++executing Releasing New Version to GitHub++++===="
 
                 sshagent(credentials: ['fcarrascosa-ssh']) {
+                    sh 'mkdir ~/.ssh'
+                    sh "ssh-keyscan github.com >> ~/.ssh/known_hosts"
                     sh "git config user.name $GIT_AUTHOR_NAME"
                     sh "git config user.email $GIT_AUTHOR_EMAIL"
                     sh 'curl https://raw.githubusercontent.com/fcarrascosa/scripts/master/versioning-component.sh | bash'
