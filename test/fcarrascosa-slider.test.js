@@ -32,7 +32,7 @@ describe('<fcarrascosa-slider>', () => {
       describe('render method', () => {
         let sandbox;
         before(() => {
-          sandbox = sinon.sandbox.create();
+          sandbox = sinon.createSandbox();
         });
         afterEach(() => {
           sandbox.restore();
@@ -47,7 +47,7 @@ describe('<fcarrascosa-slider>', () => {
         let sandbox;
 
         beforeEach(() => {
-          sandbox = sinon.sandbox.create();
+          sandbox = sinon.createSandbox();
         });
 
         afterEach(() => {
@@ -336,23 +336,73 @@ describe('<fcarrascosa-slider>', () => {
             <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
         </fcarrascosa-slider>
       `);
-        sandbox = await sinon.sandbox.create();
+        sandbox = await sinon.createSandbox();
       });
 
       afterEach(() => {
         sandbox.restore();
       });
 
-      it('should go to next slide when clicked fcarrascosa-slider-nav-button[data-action="move-forward"]', () => {
+      it('should call goToNextSlide when clicked fcarrascosa-slider-nav-button[data-action="move-forward"]', () => {
         sinon.spy(element.goToNextSlide, 'call');
         element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-forward"]').click();
         expect(element.goToNextSlide.call.called).to.be.true;
       });
 
-      it('should go to previous slide when clicked fcarrascosa-slider-nav-button[data-action="move-backwards"]', () => {
+      it('should go to next slidee when clicked fcarrascosa-slider-nav-button[data-action="move-forward"]', () => {
+        element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-forward"]').click();
+        expect(element.currentSlide).to.be.equal(1);
+      });
+
+      it('should call goToPreviousSlide slide when clicked fcarrascosa-slider-nav-button[data-action="move-backwards"]', () => {
         sandbox.spy(element.goToPreviousSlide, 'call');
         element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-backwards"]').click();
         expect(element.goToPreviousSlide.call.called).to.be.true;
+      });
+
+      it('should go to next slide when clicked fcarrascosa-slider-nav-button[data-action="move-backwards"]', () => {
+        element.shadowRoot.querySelector('fcarrascosa-slider-nav-button[data-action="move-backwards"]').click();
+        expect(element.currentSlide).to.be.equal(element.totalAmountOfSlides - 1);
+      });
+    });
+    describe('element with bullets controls', () => {
+      let element;
+      let sandbox;
+
+      beforeEach(async () => {
+        element = await fixture(html`
+      <fcarrascosa-slider bullets>
+            <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
+            <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
+        </fcarrascosa-slider>
+      `);
+        sandbox = await sinon.createSandbox();
+      });
+
+      afterEach(() => {
+        sandbox.restore();
+      });
+
+      it('should call goToSlide when bullet 2 is clicked', () => {
+        sandbox.spy(element, 'goToSlide');
+        const bullet = element.shadowRoot.querySelectorAll('fcarrascosa-slider-nav-bullet')[2];
+        bullet.click();
+        expect(element.goToSlide.calledOnce).to.be.true;
+      });
+
+      it('should call goToSlide with param 2 when bullet 2 is clicked', () => {
+        sandbox.spy(element, 'goToSlide');
+        const bullet = element.shadowRoot.querySelectorAll('fcarrascosa-slider-nav-bullet')[2];
+        bullet.click();
+        expect(element.goToSlide.calledWith(2)).to.be.true;
+      });
+
+      it('should go to slide 2 when bullet 2 is clicked', () => {
+        const bullet = element.shadowRoot.querySelectorAll('fcarrascosa-slider-nav-bullet')[2];
+        bullet.click();
+        expect(element.currentSlide).to.be.equal(2);
       });
     });
   });
