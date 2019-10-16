@@ -5,7 +5,6 @@ import {
 } from '@open-wc/testing';
 
 import '../src/fcarrascosa-slider-nav-button-register';
-// import FcarrascosaSliderNavButton from '../src/FcarrascosaSliderNavButton';
 
 describe('<fcarrascosa-slider-nav-button>', () => {
   describe('common tests', () => {
