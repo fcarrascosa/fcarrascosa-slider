@@ -62,7 +62,7 @@ describe('<fcarrascosa-slider>', () => {
           it('should call goToNextSlide method with bind', () => {
             sandbox.spy(element.goToNextSlide, 'bind');
             element.initSlider();
-            expect(element.goToNextSlide.bind.calledOnce).to.be.true;
+            expect(element.goToNextSlide.bind).to.be.called;
           });
         });
 
@@ -70,19 +70,19 @@ describe('<fcarrascosa-slider>', () => {
           it('should stop the slider when goToSlide is called', () => {
             sandbox.spy(element, 'pauseSlider');
             element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
-            expect(element.pauseSlider.calledOnce).to.be.true;
+            expect(element.pauseSlider).to.be.called;
           });
 
           it('should restart the slider when goToSlide is called', () => {
             sandbox.spy(element, 'initSlider');
             element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
-            expect(element.initSlider.calledOnce).to.be.true;
+            expect(element.initSlider).to.be.called;
           });
 
           it('should call to selectSlide method', () => {
             sandbox.spy(element, 'selectSlide');
             element.goToSlide(element.querySelectorAll('fcarrascosa-slider-slide').length - 1);
-            expect(element.selectSlide.calledOnce).to.be.true;
+            expect(element.selectSlide).to.be.called;
           });
 
           it('should move to the indicated slide when calling selectSlide', () => {
@@ -389,14 +389,14 @@ describe('<fcarrascosa-slider>', () => {
         sandbox.spy(element, 'goToSlide');
         const bullet = element.shadowRoot.querySelectorAll('fcarrascosa-slider-nav-bullet')[2];
         bullet.click();
-        expect(element.goToSlide.calledOnce).to.be.true;
+        expect(element.goToSlide).to.be.called;
       });
 
       it('should call goToSlide with param 2 when bullet 2 is clicked', () => {
         sandbox.spy(element, 'goToSlide');
         const bullet = element.shadowRoot.querySelectorAll('fcarrascosa-slider-nav-bullet')[2];
         bullet.click();
-        expect(element.goToSlide.calledWith(2)).to.be.true;
+        expect(element.goToSlide).to.be.calledWith(2);
       });
 
       it('should go to slide 2 when bullet 2 is clicked', () => {
@@ -424,7 +424,7 @@ describe('<fcarrascosa-slider>', () => {
     });
 
     it('should print a console warn', () => {
-      expect(console.warn.calledOnce).to.be.true;
+      expect(console.warn).to.be.called;
     });
   });
 });
