@@ -1,5 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
 import './fcarrascosa-slider-nav-button-register';
+import './fcarrascosa-slider-nav-bullet-register';
+
+const SLIDER_DEFAULT_TIMER = 4;
 
 /**
  * @customElement
@@ -33,11 +36,16 @@ export default class FcarrascosaSlider extends LitElement {
        */
       time: {
         type: Number,
-        value: 4,
       },
 
       interval: {
         type: Function,
+      },
+
+      withBullets: {
+        type: Boolean,
+        attribute: 'bullets',
+        reflect: true,
       },
 
       withNavButtons: {
@@ -73,7 +81,7 @@ export default class FcarrascosaSlider extends LitElement {
       // eslint-disable-next-line no-console
       console.warn('slider does not have any slides');
     } else {
-      this.time = this.time || 4;
+      this.time = this.time || SLIDER_DEFAULT_TIMER;
       this.goToSlide(0);
       this.initSlider();
     }
@@ -182,6 +190,10 @@ export default class FcarrascosaSlider extends LitElement {
     this.initSlider();
   }
 
+  goToSlideFromEvent(e) {
+    this.goToSlide(e.detail.slide);
+  }
+
   /**
    * Selects the currentSlide
    * @param slideToSelect
@@ -251,6 +263,14 @@ export default class FcarrascosaSlider extends LitElement {
         transform: rotate(180deg);
         left: calc(100% - 40px);
       }
+      
+      .bullets {
+        position: absolute;
+        bottom: .25rem;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+      }
     `;
   }
 
@@ -262,6 +282,16 @@ export default class FcarrascosaSlider extends LitElement {
         <fcarrascosa-slider-nav-button data-action="move-backwards" message="Previous" @click="${this.goToPreviousSlide}"></fcarrascosa-slider-nav-button>
         <fcarrascosa-slider-nav-button data-action="move-forward" message="Next" @click="${this.goToNextSlide}"></fcarrascosa-slider-nav-button>
     `
+    : ''}
+        
+        ${this.withBullets
+    ? html`
+            <div class="bullets">
+                ${[...this.querySelectorAll('fcarrascosa-slider-slide')].map((el, i) => html`
+                  <fcarrascosa-slider-nav-bullet slide="${i}" @click-handled="${this.goToSlideFromEvent}" ?active="${this.currentSlide === i}"></fcarrascosa-slider-nav-bullet>
+                `)}
+            </div>
+        `
     : ''}
             
         <slot></slot>
