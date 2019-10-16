@@ -24,7 +24,6 @@ export default class FcarrascosaSliderNavBullet extends LitElement {
   }
 
   dispatchHandleClick() {
-    console.log('hola');
     this.dispatchEvent(new CustomEvent('click-handled', {
       detail: {
         slide: this.slide,

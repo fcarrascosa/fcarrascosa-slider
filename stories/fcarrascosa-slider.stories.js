@@ -65,7 +65,8 @@ storiesOf('fcarrascosa-slider', module)
       <fcarrascosa-slider-slide image="https://placehold.it/700x300/003c2e/FFF?text=Image+4">
       </fcarrascosa-slider-slide>      
     </fcarrascosa-slider>
-  `).add('With Controls and Bullets', () => html`
+  `)
+  .add('With Controls and Bullets', () => html`
 
     <style>
         fcarrascosa-slider {
