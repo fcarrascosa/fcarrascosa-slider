@@ -1,5 +1,7 @@
 # [Unreleased]
 
+# 1.1.0 to 1.1.1
+
 # 1.0.0 to 1.1.0
 * Add swiping behavior
 
