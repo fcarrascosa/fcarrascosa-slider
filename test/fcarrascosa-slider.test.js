@@ -159,14 +159,14 @@ describe('<fcarrascosa-slider>', () => {
           expect(element.currentSlide).to.be.equal(currentSlide);
         });
 
-        it('it should keep sliding after moving less than 10px with mouse right side', () => {
+        it('it should keep sliding after moving less than 10px with mouse right side', async () => {
           const mousedown = eventGenerator('mousedown', 10);
           const mouseup = eventGenerator('mouseup', 11);
 
           element.dispatchEvent(mousedown);
           element.dispatchEvent(mouseup);
 
-          expect(element.interval).to.not.be.null;
+          await expect(element.interval).to.not.be.null;
         });
 
         it('it should do nothing after moving less than 10px with mouse left side', () => {
@@ -222,7 +222,7 @@ describe('<fcarrascosa-slider>', () => {
           await expect(element.currentSlide).to.be.equal(currentSlide);
         });
 
-        it('it should keep sliding  after moving less than 10px with finger left side', async () => {
+        it('it should keep sliding  after moving less than 10px with finger left side', () => {
           const mousedown = eventGenerator('touchstart', 10);
           const mouseup = eventGenerator('touchend', 9);
 
@@ -244,7 +244,7 @@ describe('<fcarrascosa-slider>', () => {
           await expect(element.currentSlide).to.be.equal(currentSlide + 1);
         });
 
-        it('should keep sliding after moving more than 10px with the mouse left side', async () => {
+        it('should keep sliding after moving more than 10px with the mouse left side', () => {
           const mousedown = eventGenerator('mousedown', 100);
           const mouseup = eventGenerator('mouseup', 89);
 
@@ -268,11 +268,9 @@ describe('<fcarrascosa-slider>', () => {
           await expect(element.currentSlide).to.be.equal(currentSlide - 1);
         });
 
-        it('should keep sliding after moving more than 10px with the mouse left side', async () => {
+        it('should keep sliding after moving more than 10px with the mouse left side', () => {
           const mousedown = eventGenerator('mousedown', 89);
           const mouseup = eventGenerator('mouseup', 100);
-
-          await element.goToNextSlide();
 
           element.dispatchEvent(mousedown);
           element.dispatchEvent(mouseup);
@@ -405,7 +403,7 @@ describe('<fcarrascosa-slider>', () => {
             await expect(currentSlide.style.left).to.be.equal('9px');
           });
 
-          it('should keep sliding when moving mouse without dragInit sett', () => {
+          it('should keep sliding when moving mouse without dragInit set', () => {
             const dragEvent = eventGenerator('touchmove', 10);
             element.dispatchEvent(dragEvent);
 

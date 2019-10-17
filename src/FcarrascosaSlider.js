@@ -134,6 +134,8 @@ export default class FcarrascosaSlider extends LitElement {
     });
 
     [this.dragInit, this.dragEnd] = [0, 0];
+
+    this.initSlider();
   }
 
   /**
