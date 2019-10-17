@@ -97,8 +97,8 @@ export default class FcarrascosaSlider extends LitElement {
   }
 
   onDrag(e) {
-    this.pauseSlider();
     if (this.dragInit) {
+      this.pauseSlider();
       const slides = this.querySelectorAll('fcarrascosa-slider-slide[previous="true"], fcarrascosa-slider-slide[next="true"], fcarrascosa-slider-slide[selected="true"]');
       const movement = (e.clientX || e.changedTouches[0].clientX) - this.dragInit;
       slides.forEach((slide) => {
