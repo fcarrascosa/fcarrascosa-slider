@@ -83,7 +83,7 @@ pipeline {
                                     alwaysLinkToLastBuild: false,
                                     keepAll: true,
                                     reportDir: 'report',
-                                    reportFiles: '**/*.html',
+                                    reportFiles: 'index.html',
                                     reportName: 'Complexity Report'
                             ]
                         }
