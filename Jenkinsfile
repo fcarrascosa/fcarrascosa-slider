@@ -65,6 +65,30 @@ pipeline {
                         }
                     }
                 }
+                stage("Plato Complexity Report") {
+                    steps {
+                        echo "====++++executing Plato Complexity Report++++===="
+                        sh 'npm run test:complexity'
+                    }
+                    post {
+                        success {
+                            echo "====++++Plato Complexity Report++++===="
+                        }
+                        failure {
+                            echo"====++++Plato Complexity Report++++===="
+                        }
+                        always {
+                            publishHTML target: [
+                                    allowMissing: false,
+                                    alwaysLinkToLastBuild: false,
+                                    keepAll: true,
+                                    reportDir: 'report',
+                                    reportFiles: 'index.html',
+                                    reportName: 'Complexity Report'
+                            ]
+                        }
+                    }
+                }
             }
             post {
                 always {

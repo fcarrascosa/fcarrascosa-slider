@@ -256,7 +256,6 @@ export default class FcarrascosaSlider extends LitElement {
     `;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   render() {
     return html`
         ${this.withNavButtons
