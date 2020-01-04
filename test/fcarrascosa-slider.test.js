@@ -32,7 +32,7 @@ describe('<fcarrascosa-slider>', () => {
       describe('render method', () => {
         let sandbox;
         before(() => {
-          sandbox = sinon.sandbox.create();
+          sandbox = sinon.createSandbox();
         });
         afterEach(() => {
           sandbox.restore();
@@ -47,7 +47,7 @@ describe('<fcarrascosa-slider>', () => {
         let sandbox;
 
         beforeEach(() => {
-          sandbox = sinon.sandbox.create();
+          sandbox = sinon.createSandbox();
         });
 
         afterEach(() => {
@@ -425,7 +425,7 @@ describe('<fcarrascosa-slider>', () => {
             <fcarrascosa-slider-slide image="https://placehold.it/700x300"></fcarrascosa-slider-slide>
         </fcarrascosa-slider>
       `);
-        sandbox = await sinon.sandbox.create();
+        sandbox = await sinon.createSandbox();
       });
 
       afterEach(() => {
