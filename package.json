@@ -47,7 +47,7 @@
     "chai": "^4.2.0",
     "deepmerge": "^4.0.0",
     "eslint": "^6.0.0",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "http-server": "^0.12.0",
